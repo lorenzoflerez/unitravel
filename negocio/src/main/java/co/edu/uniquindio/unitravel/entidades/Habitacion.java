@@ -3,6 +3,7 @@ package co.edu.uniquindio.unitravel.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.util.List;
@@ -21,6 +22,10 @@ public class Habitacion implements Serializable {
     @EqualsAndHashCode.Include
     @Column(name = "id_habitacion")
     private Integer idHabitacion;
+
+/*    @Column(nullable = false, name = "numero_habitacion", length = 5)
+    @NonNull
+    private String numHabitacion;*/
 
     @Positive
     @NonNull
