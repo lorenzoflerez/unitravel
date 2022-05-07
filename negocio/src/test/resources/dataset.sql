@@ -74,7 +74,7 @@ insert into silla values(1,'23F',98000,1);
 insert into silla values(2,'2A',130000,1);
 insert into silla values(3,'27G',112000,2);
 insert into silla values(4,'22F',98000,3);
-insert into silla values(5,'22F',98000,4);
+insert into silla values(5,'21F',98000,4);
 insert into silla values(6,'24F',98000,1);
 
 insert into sitio_de_interes values(1,'Parque del Cafe',75000,1);
@@ -86,9 +86,9 @@ insert into horario values(1,'xjvsd', '18:00:00', '9:00:00');
 insert into horario values(2,'mxjvsd', '17:00:00', '8:30:00');
 insert into horario values(3,'lmxjvsd', '12:30:00', '8:30:00');
 
-insert into paquete_turistico values(1, 180000, 1);
-insert into paquete_turistico values(2, 25000, 2);
-insert into paquete_turistico values(3, 70000, 3);
+insert into paquete_turistico values(1, 180000, 4000);
+insert into paquete_turistico values(2, 25000, 4001);
+insert into paquete_turistico values(3, 70000, 4002);
 
 insert into sitio_de_interes_paquetes values(1,1);
 insert into sitio_de_interes_paquetes values(2,1);
@@ -100,9 +100,9 @@ insert into horario_paquetes values(1,3);
 insert into horario_paquetes values(2,1);
 insert into horario_paquetes values(3,2);
 
-insert into reserva values(1,'2022-06-01 10:45:00','2022-06-08 10:45:00',utc_date,2,900000,1);
-insert into reserva values(2,'2022-08-01 08:45:00','2022-08-08 08:45:00',utc_date,2,500000,1);
-insert into reserva values(3,'2022-06-01 10:45:00','2022-06-08 10:45:00',utc_date,2,1000000,2);
+insert into reserva values(1,'2022-06-08 10:45:00','2022-06-01 10:45:00',utc_date,1,2,900000,2000);
+insert into reserva values(2,'2022-08-08 08:45:00','2022-08-01 08:45:00',utc_date,1,2,500000,2001);
+insert into reserva values(3,'2022-06-08 10:45:00','2022-06-01 10:45:00',utc_date,1,2,1000000,2002);
 
 insert into reserva_silla values(1,98000,1,1);
 insert into reserva_silla values(2,98000,1,6);
