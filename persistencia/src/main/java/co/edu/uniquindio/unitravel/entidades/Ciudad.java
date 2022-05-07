@@ -12,12 +12,13 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ciudad implements Serializable {
 
     @Builder
     public Ciudad(@NonNull String ciudad) {
-        this.ciudad = ciudad;
+    this.ciudad = ciudad;
     }
 
     @Id

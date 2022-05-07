@@ -28,7 +28,7 @@ public class Cliente extends Persona{
     @ToString.Exclude
     private List<Reserva> reservas;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ciudad_id")
     private Ciudad ciudad;
 
