@@ -17,6 +17,13 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Silla implements Serializable {
 
+    @Builder
+    public Silla(@NonNull String asiento, @NonNull Double precio, Vuelo vuelo) {
+        this.asiento = asiento;
+        this.precio = precio;
+        this.vuelo = vuelo;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

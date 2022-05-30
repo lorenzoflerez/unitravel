@@ -3,7 +3,6 @@ package co.edu.uniquindio.unitravel.servicios;
 import co.edu.uniquindio.unitravel.entidades.Cliente;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ClienteService {
 
@@ -17,23 +16,23 @@ public interface ClienteService {
 
     List<Cliente> listarClientes();
 
-    Optional<Cliente> validarCliente(String email, String password);
+    Cliente validarCliente(String email, String password) throws Exception;
 
-    Optional<Cliente> buscarClienteNombre(String nombre);
+    Cliente buscarClienteNickname(String nickname) throws Exception;
 
-    Optional<Cliente> buscarClienteEmail(String email);
+    Cliente buscarClienteEmail(String email) throws Exception;
 
-    Optional<Cliente> findClienteByTelefonos(String telefono);
+    Cliente buscarClienteTelefono(String telefono) throws Exception;
 
     List<Object[]> contarClientesPorCiudad();
 
-    String registrarTelefono(Cliente cliente, String telefono) throws Exception;
+    Cliente registrarTelefono(Cliente cliente, String telefono) throws Exception;
 
-    String actualizarTelefono(Cliente cliente, String telefono) throws Exception;
+    Cliente actualizarTelefono(Cliente cliente, String antiguo, String nuevo) throws Exception;
 
-    void eliminarTelefono(String telefono) throws Exception;
+    Cliente eliminarTelefono(Cliente cliente, String telefono) throws Exception;
 
-    List<String> listarTelefonosCliente();
+    List<String> listarTelefonosCliente(Cliente cliente) throws Exception;
 
     Cliente recuperarClaveDeAcceso(String email) throws Exception;
 }

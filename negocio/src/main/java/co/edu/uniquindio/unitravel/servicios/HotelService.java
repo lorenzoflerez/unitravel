@@ -22,13 +22,13 @@ public interface HotelService {
 
     List<Hotel> listarHotelesPorEstrellas(Integer numEstrellas);
 
-    List<Hotel> listarHotelesGerente(Integer idGerente);
+    List<Hotel> listarHotelesGerente(Integer idGerente) throws Exception;
 
-    List<Hotel> listarHotelesCiudad(Integer idCiudad);
+    List<Hotel> listarHotelesCiudad(Integer idCiudad) throws Exception;
 
-    List<Hotel> listarHotelesRegion(Integer idRegion);
+    List<Hotel> listarHotelesRegion(Integer idRegion) throws Exception;
 
-    List<Hotel> listarHotelesCaracteristica(Integer idCaracteristica);
+    List<Hotel> listarHotelesCaracteristica(Integer idCaracteristica) throws Exception;
 
     List<Hotel> listarHotelesRangoPrecio(Double minimo, Double maximo);
 
@@ -44,11 +44,11 @@ public interface HotelService {
 
     List<Object[]> ordenarHotelesPorCalificacion();
 
-    List<Object[]> obtenerCalificacionHotel(Integer idHotel);
+    List<Object[]> obtenerCalificacionHotel(Integer idHotel) throws Exception;
 
-    Optional<Object[]> contarReservasActivasHotel(Integer idHotel, LocalDateTime fecha);
+    Optional<Object[]> contarReservasActivasHotel(Integer idHotel, LocalDateTime fecha) throws Exception;
 
-    Optional<Object[]> contarHabitacionesDisponiblesHotel(Integer idHotel, LocalDateTime fecha);
+    Optional<Object[]> contarHabitacionesDisponiblesHotel(Integer idHotel, LocalDateTime fecha) throws Exception;
 
 
     Habitacion registrarHabitacion(Habitacion habitacion) throws Exception;
@@ -61,11 +61,11 @@ public interface HotelService {
 
     List<Habitacion> listarHabitaciones();
 
-    List<Habitacion> listarHabitacionesCaracteristica(Integer idCaracteristica);
+    List<Habitacion> listarHabitacionesCaracteristica(Integer idCaracteristica) throws Exception;
 
     List<Habitacion> listarHabitacionesTipoCama(String tipoCama);
 
-    Optional<Object[]> contarCamasHabitacion(Integer idHabitacion);
+    Optional<Object[]> contarCamasHabitacion(Integer idHabitacion) throws Exception;
 
 
     Foto registrarFoto(Foto habitacion) throws Exception;
@@ -74,13 +74,15 @@ public interface HotelService {
 
     Foto buscarFotoPorId(Integer idFoto) throws Exception;
 
+    Boolean buscarFotoPorUrl(String url);
+
     void eliminarFoto(Integer idFoto) throws Exception;
 
     List<Foto> listarFotos();
 
-    List<Foto> listarFotosHotel(Integer idHotel);
+    List<Foto> listarFotosHotel(Integer idHotel) throws Exception;
 
-    List<Foto> listarFotosHabitacion(Integer idHabitacion);
+    List<Foto> listarFotosHabitacion(Integer idHabitacion) throws Exception;
 
 
     Cama registrarCama(Cama cama) throws Exception;
@@ -100,13 +102,15 @@ public interface HotelService {
 
     Caracteristica buscarCaracteristicaPorId(Integer idCaracteristica) throws Exception;
 
+    Boolean buscarCaracteristicaPorNombre(String caracteristica);
+
     void eliminarCaracteristica(Integer idCaracteristica) throws Exception;
 
     List<Caracteristica> listarCaracteristicas();
 
-    List<Caracteristica> listarCaracteristicasHotel(Integer idHotel);
+    List<Caracteristica> listarCaracteristicasHotel(Integer idHotel) throws Exception;
 
-    List<Caracteristica> listarCaracteristicasHabitacion(Integer idHabitacion);
+    List<Caracteristica> listarCaracteristicasHabitacion(Integer idHabitacion) throws Exception;
 
 
     Gerente registrarGerente(Gerente gerente) throws Exception;
@@ -119,9 +123,9 @@ public interface HotelService {
 
     List<Gerente> listarGerentes();
 
-    Optional<Gerente> validarGerente(String email, String password);
+    Gerente validarGerente(String email, String password) throws Exception;
 
     Gerente recuperarClaveDeAcceso(String email) throws Exception;
 
-    List<Gerente> listarGerentesCiudad(Integer idCiudad);
+    List<Gerente> listarGerentesCiudad(Integer idCiudad) throws Exception;
 }

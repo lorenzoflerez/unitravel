@@ -19,6 +19,16 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Reserva implements Serializable {
 
+    public Reserva(LocalDateTime fechaReserva, LocalDateTime fechaInicio, LocalDateTime fechaFin, @NonNull Double total, @NonNull Integer numeroPersonas, Cliente cliente, @NonNull MetodoPago metodoPago) {
+        this.fechaReserva = LocalDateTime.now();
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.total = total;
+        this.numeroPersonas = numeroPersonas;
+        this.cliente = cliente;
+        this.metodoPago = metodoPago;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

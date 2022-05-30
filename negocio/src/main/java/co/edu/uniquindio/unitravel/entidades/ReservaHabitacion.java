@@ -16,6 +16,13 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ReservaHabitacion implements Serializable {
 
+    @Builder
+    public ReservaHabitacion(@NonNull Double subTotal, Reserva reserva, Habitacion habitacion) {
+        this.subTotal = subTotal;
+        this.reserva = reserva;
+        this.habitacion = habitacion;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

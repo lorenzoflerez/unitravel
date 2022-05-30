@@ -17,15 +17,23 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Habitacion implements Serializable {
 
+    @Builder
+    public Habitacion(@NonNull String numHabitacion, @NonNull Double precio, @NonNull Integer capacidad, Hotel hotel) {
+        this.numHabitacion = numHabitacion;
+        this.precio = precio;
+        this.capacidad = capacidad;
+        this.hotel = hotel;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     @Column(name = "id_habitacion")
     private Integer idHabitacion;
 
-/*    @Column(nullable = false, name = "numero_habitacion", length = 5)
+    @Column(nullable = false, name = "numero_habitacion", length = 5)
     @NonNull
-    private String numHabitacion;*/
+    private String numHabitacion;
 
     @Positive
     @NonNull

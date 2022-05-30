@@ -17,6 +17,14 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Comentario implements Serializable {
 
+    public Comentario(String comentario, Integer calificacion, LocalDateTime fechaComentario, Cliente cliente, Hotel hotel) {
+        this.comentario = comentario;
+        this.calificacion = calificacion;
+        this.fechaComentario = LocalDateTime.now();
+        this.cliente = cliente;
+        this.hotel = hotel;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

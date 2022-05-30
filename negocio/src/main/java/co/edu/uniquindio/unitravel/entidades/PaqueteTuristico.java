@@ -15,6 +15,12 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PaqueteTuristico implements Serializable {
 
+    @Builder
+    public PaqueteTuristico(@NonNull Double totalPaquete, Guia guia) {
+        this.totalPaquete = totalPaquete;
+        this.guia = guia;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

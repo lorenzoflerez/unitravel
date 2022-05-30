@@ -18,6 +18,15 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Hotel implements Serializable {
 
+    @Builder
+    public Hotel(@NonNull String nombre, @NonNull String direccion, @NonNull Integer estrellas, Gerente gerente, Ciudad ciudad) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.estrellas = estrellas;
+        this.gerente = gerente;
+        this.ciudad = ciudad;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

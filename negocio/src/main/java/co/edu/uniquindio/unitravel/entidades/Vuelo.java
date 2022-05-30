@@ -18,6 +18,16 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Vuelo implements Serializable {
 
+    @Builder
+    public Vuelo(@NonNull String estado, @NonNull String aerolinea, LocalDateTime fechaSalida, LocalDateTime fechaLlegada, Ciudad origen, Ciudad destino) {
+        this.estado = estado;
+        this.aerolinea = aerolinea;
+        this.fechaSalida = fechaSalida;
+        this.fechaLlegada = fechaLlegada;
+        this.origen = origen;
+        this.destino = destino;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

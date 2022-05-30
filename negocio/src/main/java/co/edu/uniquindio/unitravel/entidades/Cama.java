@@ -15,6 +15,11 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cama implements Serializable {
 
+    @Builder
+    public Cama(@NonNull TipoCama tipoCama) {
+        this.tipoCama = tipoCama;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

@@ -15,6 +15,11 @@ import java.io.Serializable;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Foto implements Serializable {
 
+    @Builder
+    public Foto(@NonNull String url) {
+        this.url = url;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

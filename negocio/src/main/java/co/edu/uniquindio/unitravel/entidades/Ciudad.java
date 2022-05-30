@@ -17,8 +17,9 @@ import java.util.List;
 public class Ciudad implements Serializable {
 
     @Builder
-    public Ciudad(@NonNull String ciudad) {
-    this.ciudad = ciudad;
+    public Ciudad( @NonNull Region region,@NonNull String ciudad) {
+        this.region = region;
+        this.ciudad = ciudad;
     }
 
     @Id

@@ -18,26 +18,26 @@ public interface ReservaService {
 
     List<Reserva> listarReservas();
 
-    List<Reserva> listarReservasUsuario(Integer idCliente);
+    List<Reserva> listarReservasUsuario(Integer idCliente) throws Exception;
 
-    List<Object[]> listarReservasHotel(Integer idHotel);
+    List<Object[]> listarReservasHotel(Integer idHotel) throws Exception;
 
-    List<Object[]> listarReservasVuelo(Integer idVuelo);
+    List<Object[]> listarReservasVuelo(Integer idVuelo) throws Exception;
 
-    List<Object[]> listarReservasPaquete(Integer idPaquete);
+    List<Object[]> listarReservasPaquete(Integer idPaquete) throws Exception;
 
     List<Object[]> listarReservasActivas(LocalDateTime actual);
 
-    List<Object[]> calcularTotalReserva(Integer idReserva);
+    List<Object[]> calcularTotalReserva(Integer idReserva) throws Exception;
 
 
-    ReservaHabitacion registrarReservaHabitacion(ReservaHabitacion reserva) throws Exception;
+    ReservaHabitacion registrarReservaHabitacion(ReservaHabitacion reservaHabitacion) throws Exception;
 
-    ReservaHabitacion actualizarReservaHabitacion(ReservaHabitacion reserva) throws Exception;
+    ReservaHabitacion actualizarReservaHabitacion(ReservaHabitacion reservaHabitacion) throws Exception;
 
     ReservaHabitacion buscarReservaHabitacionPorId(Integer idReservaHabitacion) throws Exception;
 
-    void eliminarRReservaHabitacion(Integer idReservaHabitacion) throws Exception;
+    void eliminarReservaHabitacion(Integer idReservaHabitacion) throws Exception;
 
     List<ReservaHabitacion> listarReservasHabitacion();
 

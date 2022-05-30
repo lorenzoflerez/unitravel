@@ -19,9 +19,13 @@ public interface AdministradorService {
 
     List<Administrador> listarAdministradores();
 
-    Optional<Administrador> validarAdministrador(String email, String password) throws Exception;
+    Administrador validarAdministrador(String email, String password) throws Exception;
 
     Administrador recuperarClaveDeAcceso(String email) throws Exception;
+
+    Administrador buscarAdministradorPorNickname(String nickname) throws Exception;
+
+    Administrador buscarAdministradorPorEmail(String email) throws Exception;
 
 
     Region registrarRegion(Region region) throws Exception;
@@ -45,7 +49,9 @@ public interface AdministradorService {
 
     List<Ciudad> listarCiudades();
 
-    List<Ciudad> listarCiudadesRegion(Integer idRegion);
+    List<Ciudad> listarCiudadesRegion(Integer idRegion) throws Exception;
 
-    Optional<Ciudad> findByCiudad(String ciudad);
+    List<Ciudad> buscarCiudadPorNombre(String ciudad);
+
+    Optional<Ciudad> validarCiudad(Integer idRegion, String ciudad) throws Exception;
 }

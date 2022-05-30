@@ -20,21 +20,21 @@ public interface VueloService {
 
     List<Vuelo> listarVuelos();
 
-    List<Vuelo> listarVuelosOrigen(Integer idOrigen);
+    List<Vuelo> listarVuelosOrigen(Integer idOrigen) throws Exception;
 
-    List<Vuelo> listarVuelosDestino(Integer idDestino);
+    List<Vuelo> listarVuelosDestino(Integer idDestino) throws Exception;
 
-    List<Vuelo> listarVuelosOrigenYDestino(Integer idOrigen, Integer idDestino);
+    List<Vuelo> listarVuelosOrigenYDestino(Integer idOrigen, Integer idDestino) throws Exception;
 
-    List<Vuelo> listarVuelosAerolinea(Integer idAerolinea);
+    List<Vuelo> listarVuelosAerolinea(String aerolinea);
 
-    List<Vuelo> listarVuelosEstado(Integer idEstado);
+    List<Vuelo> listarVuelosEstado(String estado);
 
     List<Vuelo> listarVuelosHoraSalida(LocalDateTime fechaSalida);
 
     List<Vuelo> listarVuelosHoraLllegada(LocalDateTime fechaLlegada);
 
-    Optional<Object[]> contarSillasDisponiblesVuelo(Integer idVuelo, LocalDateTime fecha);
+    List<Silla> listarSillasDisponiblesVuelo(Integer idVuelo, LocalDateTime fecha) throws Exception;
 
 
     Silla registrarSilla(Silla silla) throws Exception;

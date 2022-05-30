@@ -1,11 +1,13 @@
 package co.edu.uniquindio.unitravel.repositorios;
 
+import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.entidades.Lugar;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface LugarRepository extends JpaRepository<Lugar, Integer> {
@@ -21,4 +23,7 @@ public interface LugarRepository extends JpaRepository<Lugar, Integer> {
 
     @Query("select l from Lugar l where l.nombre like concat('%', :nombre, '%')")
     List<Lugar> listarLugarNombre(String nombre);
+
+    @Query("select l from Lugar l where l.ciudad.idCiudad = :idCiudad and l.nombre = :nombre")
+    Optional<Lugar> validarCiudad(Integer idCiudad, String nombre);
 }

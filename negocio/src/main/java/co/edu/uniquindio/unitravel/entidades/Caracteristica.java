@@ -15,6 +15,10 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Caracteristica implements Serializable {
+    @Builder
+    public Caracteristica(@NonNull String caracteristica) {
+        this.caracteristica = caracteristica;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +26,7 @@ public class Caracteristica implements Serializable {
     @Column(name = "id_caracteristica")
     private Integer idCaracteristica;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     @NotBlank
     @NonNull
     private String caracteristica;

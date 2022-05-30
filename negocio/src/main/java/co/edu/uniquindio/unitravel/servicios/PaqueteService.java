@@ -2,8 +2,8 @@ package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.*;
 
+import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
 
 public interface PaqueteService {
 
@@ -17,9 +17,9 @@ public interface PaqueteService {
 
     List<PaqueteTuristico> listarPaquetesTuristicos();
 
-    List<PaqueteTuristico> listarPaquetesCiudad(Integer idCiudad);
+    List<PaqueteTuristico> listarPaquetesCiudad(Integer idCiudad) throws Exception;
 
-    List<PaqueteTuristico> listarPaquetesGuia(Integer idGuia);
+    List<PaqueteTuristico> listarPaquetesGuia(Integer idGuia) throws Exception;
 
     List<PaqueteTuristico> listarPaquetesDiasHabiles(String dias);
 
@@ -34,9 +34,9 @@ public interface PaqueteService {
 
     List<Lugar> listarLugares();
 
-    List<Lugar> listarLugaresCiudad(Integer idCiudad);
+    List<Lugar> listarLugaresCiudad(Integer idCiudad) throws Exception;
 
-    List<Lugar> listarLugaresPaquete(Integer idPaquete);
+    List<Lugar> listarLugaresPaquete(Integer idPaquete) throws Exception;
 
     List<Lugar> listarLugaresDiasHabiles(String dias);
 
@@ -53,6 +53,8 @@ public interface PaqueteService {
 
     List<Horario> listarHorarios();
 
+    Boolean validarHorario(String dias, LocalTime inicio, LocalTime fin) throws Exception;
+
 
     Guia registrarGuia(Guia guia) throws Exception;
 
@@ -64,7 +66,12 @@ public interface PaqueteService {
 
     List<Guia> listarGuias();
 
-    Optional<Guia> validarGuia(String email, String password);
+    Guia buscarAdministradorPorNickname(String nickname) throws Exception;
+
+    Guia buscarAdministradorPorEmail(String email) throws Exception;
+
+
+    Guia validarGuia(String email, String password) throws Exception;
 
     List<Guia> listarGuiaNombre(String nombre);
 

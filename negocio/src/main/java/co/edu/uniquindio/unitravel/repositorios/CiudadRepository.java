@@ -15,5 +15,8 @@ public interface CiudadRepository extends JpaRepository<Ciudad, Integer> {
     List<Ciudad> listarCiudadesRegion(Integer idRegion);
 
     @Query("select c from Ciudad c where c.ciudad = :ciudad")
-    Optional<Ciudad> findByCiudad(String ciudad);
+    List<Ciudad> findByCiudad(String ciudad);
+
+    @Query("select c from Ciudad c where c.region.idRegion = :idRegion and c.ciudad = :ciudad")
+    Optional<Ciudad> validarCiudad(Integer idRegion, String ciudad);
 }

@@ -15,6 +15,13 @@ import java.io.Serializable;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ReservaPaquete implements Serializable {
 
+    @Builder
+    public ReservaPaquete(@NonNull Double subTotal, Reserva reserva, PaqueteTuristico paquete) {
+        this.subTotal = subTotal;
+        this.reserva = reserva;
+        this.paquete = paquete;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

@@ -14,8 +14,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     @Query("select c from Cliente c where c.email = :email and c.password = :password")
     Optional<Cliente> validarCliente(String email, String password);
 
-    @Query("select c from Cliente c where c.email = :nombre")
-    Optional<Cliente> buscarClienteNombre(String nombre);
+    @Query("select c from Cliente c where c.email = :nickname")
+    Optional<Cliente> buscarClienteNickname(String nickname);
 
     @Query("select c from Cliente c where c.email = :email")
     Optional<Cliente> buscarClienteEmail(String email);
@@ -25,4 +25,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     @Query("select c.ciudad.ciudad, count(c) from Cliente c group by c.ciudad")
     List<Object[]> contarClientesPorCiudad();
+
+    @Query("select c.telefonos from Cliente c where c.id = :idCliente")
+    List<String> listarTelefonosCliente(Integer idCliente);
 }

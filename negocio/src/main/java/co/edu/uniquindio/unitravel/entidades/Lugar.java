@@ -16,6 +16,13 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Lugar implements Serializable {
 
+    @Builder
+    public Lugar(@NonNull String nombre, @NonNull Double tarifa, Ciudad ciudad) {
+        this.nombre = nombre;
+        this.tarifa = tarifa;
+        this.ciudad = ciudad;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include

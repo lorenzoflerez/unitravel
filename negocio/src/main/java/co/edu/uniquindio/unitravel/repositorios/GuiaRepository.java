@@ -16,4 +16,8 @@ public interface GuiaRepository extends JpaRepository<Guia, Integer> {
 
     @Query("select g from Guia g where g.nombre like concat('%', :nombre, '%')")
     List<Guia> listarGuiaNombre(String nombre);
+
+    Optional<Guia> findByNickname(String nickname);
+
+    Optional<Guia> findByEmail(String email);
 }

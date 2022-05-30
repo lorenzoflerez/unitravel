@@ -16,4 +16,10 @@ public interface GerenteRepository extends JpaRepository<Gerente, Integer> {
 
     @Query("select g from Gerente g join g.hoteles h where h.ciudad.idCiudad = :idCiudad")
     List<Gerente> listarGerentesCiudad(Integer idCiudad);
+
+    @Query("select g from Gerente g where g.email = :email")
+    Optional<Gerente> buscarPorEmail(String email);
+
+    @Query("select g from Gerente g where g.nickname = :nickname")
+    Optional<Gerente> buscarPorNickname(String nickname);
 }

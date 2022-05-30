@@ -21,11 +21,11 @@ public interface VueloRepository extends JpaRepository<Vuelo, Integer> {
     @Query("select v from Vuelo v where v.origen = :idOrigen and v.destino = :idDestino")
     List<Vuelo> listarVuelosOrigenYDestino(Integer idOrigen, Integer idDestino);
 
-    @Query("select v from Vuelo v where v.aerolinea = :idAerolinea")
-    List<Vuelo> listarVuelosAerolinea(Integer idAerolinea);
+    @Query("select v from Vuelo v where v.aerolinea = :aerolinea")
+    List<Vuelo> listarVuelosAerolinea(String aerolinea);
 
-    @Query("select v from Vuelo v where v.estado = :idEstado")
-    List<Vuelo> listarVuelosEstado(Integer idEstado);
+    @Query("select v from Vuelo v where v.estado = :estado")
+    List<Vuelo> listarVuelosEstado(String estado);
 
     @Query("select v from Vuelo v where v.fechaSalida = :fechaSalida")
     List<Vuelo> listarVuelosHoraSalida(LocalDateTime fechaSalida);

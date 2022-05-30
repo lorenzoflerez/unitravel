@@ -16,13 +16,18 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Region implements Serializable {
 
+    @Builder
+    public Region(@NonNull String region) {
+        this.region = region;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     @Column(name = "id_region")
     private Integer idRegion;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     @NotBlank
     @NonNull
     private String region;
