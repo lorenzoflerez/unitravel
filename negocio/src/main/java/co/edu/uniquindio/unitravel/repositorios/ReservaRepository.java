@@ -30,5 +30,4 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
     @Query("select r, sum(rh.subTotal + rs.subTotal + rp.subTotal) from Reserva r join r.habitaciones rh join r.sillas rs join r.paquetes rp where r.idReserva = :idReserva group by r")
     List<Object[]> calcularTotalReserva(Integer idReserva);
 
-    Optional<Reserva> validarReservaHabitacion(Integer idHabitacion, LocalDateTime inicio, LocalDateTime fin);
 }

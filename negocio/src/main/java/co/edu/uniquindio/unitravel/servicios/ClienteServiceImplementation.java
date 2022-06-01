@@ -5,6 +5,7 @@ import co.edu.uniquindio.unitravel.repositorios.ClienteRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -120,7 +121,8 @@ public class ClienteServiceImplementation implements ClienteService{
     @Override
     public List<String> listarTelefonosCliente(Cliente cliente) throws Exception{
         Cliente clienteBuscado = buscarClientePorId(cliente.getId());
-        return clienteRepository.listarTelefonosCliente(clienteBuscado.getId());
+        return new ArrayList<>();
+        //return clienteRepository.listarTelefonosCliente(clienteBuscado.getId());
     }
 
     @Override

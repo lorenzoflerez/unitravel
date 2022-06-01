@@ -1,10 +1,11 @@
 package co.edu.uniquindio.unitravel;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PersistenciaApplication {
+public class WebApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PersistenciaApplication.class, args);
+        SpringApplication.run(WebApplication.class, args);
     }
 }
