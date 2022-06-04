@@ -19,7 +19,8 @@ import java.util.List;
 public class Vuelo implements Serializable {
 
     @Builder
-    public Vuelo(@NonNull String estado, @NonNull String aerolinea, LocalDateTime fechaSalida, LocalDateTime fechaLlegada, Ciudad origen, Ciudad destino) {
+    public Vuelo(@NonNull String numeroVuelo, @NonNull String estado, @NonNull String aerolinea, LocalDateTime fechaSalida, LocalDateTime fechaLlegada, Ciudad origen, Ciudad destino) {
+        this.numeroVuelo = numeroVuelo;
         this.estado = estado;
         this.aerolinea = aerolinea;
         this.fechaSalida = fechaSalida;
@@ -33,6 +34,11 @@ public class Vuelo implements Serializable {
     @EqualsAndHashCode.Include
     @Column(name = "id_vuelo")
     private Integer idVuelo;
+
+    @Column(name ="numero_vuelo", nullable = false, length = 6)
+    @NotBlank
+    @NonNull
+    private String numeroVuelo;
 
     @Column(nullable = false, length = 40)
     @NotBlank

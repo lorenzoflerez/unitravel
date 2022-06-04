@@ -8,10 +8,82 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-<ui:composition template="/WEB-INF/template.xhtml">
+<ui:composition template="/WEB-INF/administrador.xhtml">
     <ui:define name="title">Vuelos</ui:define>
     <ui:define name="content">
+        <div class="card">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="Home" outcome="/index.xhtml"/>
+                    <p:menuitem value="Administrador"/>
+                    <p:menuitem value="Vuelos"/>
+                </p:breadCrumb>
+            </h:form>
+        </div>
 
+
+        <div class="card">
+
+            <style>
+                /* reset on the showcase style*/
+                body .ui-panelgrid .ui-panelgrid-cell {
+                    background-color: transparent;
+                }
+
+                /* example use of styles for your form */
+                .my-heading-row {
+                    background-color: var(--surface-c);
+                    font-weight: bold;
+                }
+            </style>
+
+            <!--
+            Note: Rows and columns can have style, styleClass, and id.
+            Note: A column with a defined styleClass will ignore the styleClass specified in the columnClasses list.
+            Note: Note the use of ui-fluid to ensure that components are sized correctly and the use of ui-panelgrid-blank to remove borders.
+            -->
+            <p:panelGrid columns="4"
+                         columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                         layout="grid"
+                         styleClass="ui-panelgrid-blank ui-fluid"
+                         style="border:0px none; background-color:transparent;">
+
+                <p:row styleClass="my-heading-row">
+                    Registrar Vuelo
+                </p:row>
+
+                <p:outputLabel for="@next" value="Numero de vuelo"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Aerolinea"/>
+                <p:inputText/>
+
+                <p:outputLabel for="origen" value="Origen"/>
+                <p:selectOneMenu id="origen">
+                    <f:selectItem itemLabel="Origen" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="destino" value="Destino"/>
+                <p:selectOneMenu id="destino" >
+                    <f:selectItem itemLabel="Destino" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="salida" value="Fecha de Salida"/>
+                <p:datePicker id="salida" value="#{calendarJava8View.date4}"
+                              mindate="#{calendarJava8View.minDateTime}"
+                              maxdate="#{calendarJava8View.maxDateTime}"
+                              readonlyInput="true"/>
+
+                <p:outputLabel for="llegada" value="Fecha de Llegada"/>
+                <p:datePicker id="llegada" value="#{calendarJava8View.dateTime4}"
+                              mindate="#{calendarJava8View.minDateTime}"
+                              maxdate="#{calendarJava8View.maxDateTime}"/>
+
+                <p:outputLabel for="@next" value="Estado"/>
+                <p:inputText/>
+
+            </p:panelGrid>
+        </div>
     </ui:define>
 </ui:composition>
 
