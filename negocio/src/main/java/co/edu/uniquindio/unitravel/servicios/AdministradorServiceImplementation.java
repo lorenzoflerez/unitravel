@@ -9,6 +9,7 @@ import co.edu.uniquindio.unitravel.repositorios.RegionRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,10 +93,7 @@ public class AdministradorServiceImplementation implements AdministradorService{
 
     @Override
     public Region registrarRegion(Region region) throws Exception {
-        Optional<Region> regionBuscada = regionRepository.findById(region.getIdRegion());
-        if(regionBuscada.isPresent())
-            throw new Exception("El código de la región ya se encuentra registrado");
-        regionBuscada = regionRepository.findByRegion(region.getRegion());
+        Optional<Region> regionBuscada = regionRepository.findByRegion(region.getRegion());
         if(regionBuscada.isPresent())
             throw new Exception("La región ya se encuentra registrada");
         return regionRepository.save(region);
@@ -128,10 +126,7 @@ public class AdministradorServiceImplementation implements AdministradorService{
 
     @Override
     public Ciudad registrarCiudad(Ciudad ciudad) throws Exception {
-        Optional<Ciudad> ciudadBuscada = ciudadRepository.findById(ciudad.getIdCiudad());
-        if(ciudadBuscada.isPresent())
-            throw new Exception("El código de la ciudad ya se encuentra registrado");
-        ciudadBuscada = validarCiudad(ciudad.getRegion().getIdRegion(), ciudad.getCiudad());
+        Optional<Ciudad> ciudadBuscada = ciudadRepository.findByCiudad(ciudad.getCiudad());
         if(ciudadBuscada.isPresent())
             throw new Exception("La ciudad ya se encuentra registrada");
         return ciudadRepository.save(ciudad);
@@ -172,13 +167,15 @@ public class AdministradorServiceImplementation implements AdministradorService{
     }
 
     @Override
-    public List<Ciudad> buscarCiudadPorNombre(String ciudad) {
+    public Optional<Ciudad> buscarCiudadPorNombre(String ciudad) {
         return ciudadRepository.findByCiudad(ciudad);
     }
 
     @Override
     public Optional<Ciudad> validarCiudad(Integer idRegion, String ciudad) throws Exception {
         buscarRegionPorId(idRegion);
-        return ciudadRepository.validarCiudad(idRegion, ciudad);
+        Optional<Ciudad> ciudad1 = ciudadRepository.validarCiudad(idRegion, ciudad);
+        System.out.println(ciudad1);
+        return ciudad1;
     }
 }

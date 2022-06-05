@@ -12,6 +12,86 @@
     <ui:define name="title">Gerentes</ui:define>
     <ui:define name="content">
 
+        <div class="card">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="Home" outcome="/index.xhtml"/>
+                    <p:menuitem value="Administrador"/>
+                    <p:menuitem value="Gerentes"/>
+                </p:breadCrumb>
+            </h:form>
+        </div>
+
+        <div class="p-grid" >
+            <div class="p-col-4" >
+                <p:panel>
+                    <h:form>
+                        <style>
+                            /* reset on the showcase style*/
+                            body .ui-panelgrid .ui-panelgrid-cell {
+                                background-color: transparent;
+                            }
+
+                            /* example use of styles for your form */
+                            .my-heading-row {
+                                background-color: var(--surface-c);
+                                font-weight: bold;
+                            }
+                        </style>
+
+                        <p:panelGrid columns="2"
+                                     columnClasses="p-text-justify p-col-4"
+                                     layout="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent">
+
+                            <p:row styleClass="my-heading-row ">
+                                Registrar Gerente
+                            </p:row>
+
+                            <p:outputLabel for="gerente_n" value="Nombre"/>
+                            <p:inputText id="gerente_n" value="#{vueloBean.vuelo.numeroVuelo}" required="true"/>
+
+                            <p:outputLabel for="a_vuelo" value="Aerolinea"/>
+                            <p:inputText id="a_vuelo" value="#{vueloBean.vuelo.aerolinea}" required="true"/>
+
+                            <p:outputLabel for="origen_c" value="Origen"/>
+                            <p:selectOneMenu id="origen_c" value="#{ciudadBean.ciudad.ciudad}" converter="#{ciudadConverter}" required="true" requiredMessage="El origen es obligatorio">
+                                <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
+                                <f:selectItems  value="#{ciudadBean.ciudades}" var="origen" itemLabel="#{origen.ciudad}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="destino_c" value="Destino"/>
+                            <p:selectOneMenu id="destino_c" value="#{ciudadBean.ciudad.ciudad}" converter="#{ciudadConverter}" required="true" requiredMessage="El destino es obligatorio">
+                                <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
+                                <f:selectItems  value="#{ciudadBean.ciudades}" var="destino" itemLabel="#{destino.ciudad}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="salida" value="Fecha de Salida"/>
+                            <p:datePicker id="salida" value="#{calendarJava8View.date4}"
+                                          mindate="#{calendarJava8View.minDateTime}"
+                                          maxdate="#{calendarJava8View.maxDateTime}"
+                                          readonlyInput="true" required="true"/>
+
+                            <p:outputLabel for="llegada" value="Fecha de Llegada"/>
+                            <p:datePicker id="llegada" value="#{calendarJava8View.dateTime4}"
+                                          mindate="#{calendarJava8View.minDateTime}"
+                                          maxdate="#{calendarJava8View.maxDateTime}"
+                                          required="true"/>
+
+                            <p:outputLabel for="@next" value="Estado"/>
+                            <p:inputText/>
+
+                            <p:outputLabel/>
+                            <p:commandButton type="button" value="Registrar" styleClass="ui-button-help" />
+
+                        </p:panelGrid>
+                    </h:form>
+                </p:panel>
+            </div>
+        </div>
+
+
     </ui:define>
 </ui:composition>
 

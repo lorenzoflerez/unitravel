@@ -12,6 +12,236 @@
     <ui:define name="title">Destinos</ui:define>
     <ui:define name="content">
 
+        <div class="card">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="Home" outcome="/index.xhtml"/>
+                    <p:menuitem value="Administrador"/>
+                    <p:menuitem value="Destinos"/>
+                </p:breadCrumb>
+            </h:form>
+        </div>
+
+        <div class="p-grid" >
+
+<!--        Formularios Regiones-->
+            <div class="p-col-4" >
+                <p:panel>
+                    <h:form>
+                        <style>
+                            /* reset on the showcase style*/
+                            body .ui-panelgrid .ui-panelgrid-cell {
+                                background-color: transparent;
+                            }
+
+                            /* example use of styles for your form */
+                            .my-heading-row {
+                                background-color: var(--surface-c);
+                                font-weight: bold;
+                            }
+                        </style>
+                        <p:panelGrid columns="2"
+                                     columnClasses="p-text-justify p-col-4"
+                                     layout="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent">
+
+                            <p:row styleClass="my-heading-row">
+                                Registrar Region
+                            </p:row>
+
+                            <p:outputLabel for="nombre_r" value="Region"/>
+                            <p:inputText id="nombre_r" value="#{ciudadBean.region.region}" required="true"/>
+
+                            <p:outputLabel  value=""/>
+                            <p:commandButton value="Registrar Region" styleClass="ui-button-help" action="#{ciudadBean.guardarRegion}" update="@form"/>
+
+                            <p:growl showDetail="true"/>
+
+
+
+                        </p:panelGrid>
+                        <p:growl showDetail="true"/>
+
+                    </h:form>
+                    <h:form>
+                        <p:panelGrid columns="2"
+                                     columnClasses="p-text-justify p-col-4"
+                                     layout="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent">
+
+                            <p:row styleClass="my-heading-row ">
+                                Regiones
+                            </p:row>
+                        </p:panelGrid>
+
+                        <div class="card">
+                            <p:dataTable id="lista_r" value="#{ciudadBean.regiones}" var="region" paginator="true"
+                                         rows="4" rowSelectMode="add" paginatorPosition="bottom">
+                                <p:column headerText="Region"  sortBy="#{region.region}">
+                                    <h:outputText value="#{region.region}"/>
+                                </p:column>
+
+                                <p:column exportable="false">
+                                    <p:commandButton icon="pi pi-pencil" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-region').show()">
+                                        <f:setPropertyActionListener value="#{region}" target="#{ciudadBean.region}"/>
+                                    </p:commandButton>
+                                    <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" onclick="PF('eliminar-region').show()">
+                                        <f:setPropertyActionListener value="#{region}" target="#{ciudadBean.region}"/>
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </h:form>
+                </p:panel>
+            </div>
+
+
+
+<!--        Formularios Ciudades-->
+            <div class="p-col-8" >
+                <p:panel>
+                    <h:form>
+                        <style>
+                            /* reset on the showcase style*/
+                            body .ui-panelgrid .ui-panelgrid-cell {
+                                background-color: transparent;
+                            }
+
+                            /* example use of styles for your form */
+                            .my-heading-row {
+                                background-color: var(--surface-c);
+                                font-weight: bold;
+                            }
+                        </style>
+                        <p:panelGrid columns="4"
+                                     columnClasses="p-text-justify p-col-4"
+                                     layout="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent">
+
+                            <p:row styleClass="my-heading-row">
+                                Registrar Ciudad
+                            </p:row>
+
+                            <p:outputLabel for="region_ciudad" value="Region"/>
+                            <p:selectOneMenu id="region_ciudad" value="#{ciudadBean.ciudad.region}" converter="#{regionConverter}" required="true" requiredMessage="La región es obligatoria">
+                                <f:selectItem itemLabel="Seleccione una Region" itemValue="#{null}" noSelectionOption="true"/>
+                                <f:selectItems  value="#{ciudadBean.regiones}" var="region" itemLabel="#{region.region}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="nombre_c" value="Ciudad"/>
+                            <p:inputText id="nombre_c" value="#{ciudadBean.ciudad.ciudad}" required="true"/>
+
+                            <p:outputLabel  value=""/>
+                            <p:outputLabel  value=""/>
+                            <p:outputLabel  value=""/>
+                            <p:commandButton value="Registrar Ciudad" styleClass="ui-button-help" action="#{ciudadBean.guardarCiudad}" update="@form"/>
+
+                        </p:panelGrid>
+                        <p:growl showDetail="true"/>
+
+                    </h:form>
+                    <h:form>
+                        <p:panelGrid columns="2"
+                                     columnClasses="p-text-justify p-col-4"
+                                     layout="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent">
+                            <div></div>
+                            <p:row styleClass="my-heading-row ">
+                                Ciudades
+                            </p:row>
+                        </p:panelGrid>
+
+                        <div class="card">
+                            <p:dataTable id="lista_c" value="#{ciudadBean.ciudades}" var="ciudad" paginator="true"
+                                         rows="4" rowSelectMode="add" paginatorPosition="bottom">
+                                <p:column headerText="Region"  sortBy="#{ciudad.region.region}">
+                                    <h:outputText value="#{ciudad.region.region}"/>
+                                </p:column>
+
+                                <p:column headerText="Ciudad" sortBy="#{ciudad.ciudad}">
+                                    <h:outputText value="#{ciudad.ciudad}"/>
+                                </p:column>
+                                <p:column exportable="false">
+                                    <p:commandButton icon="pi pi-pencil" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-ciudad').show()">
+                                        <f:setPropertyActionListener value="#{ciudad}" target="#{ciudadBean.ciudad}"/>
+                                    </p:commandButton>
+                                    <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" onclick="PF('eliminar-ciudad').show()">
+                                        <f:setPropertyActionListener value="#{ciudad}" target="#{ciudadBean.ciudad}"/>
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </h:form>
+                </p:panel>
+            </div>
+
+            <p:dialog header="Actualizar" widgetVar="actualizar-region" minHeight="40" width="350" showEffect="fade" modal="true">
+                <h:form>
+                    <h:panelGrid cellpadding="4" columns="2">
+                        <p:outputLabel value="Nombre Ciudad" for="nombre_re"/>
+                        <p:inputText id="nombre_re" value="#{ciudadBean.ciudad.ciudad}" required="true"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Cancelar" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('actualizar-region').hide()"/>
+                            <p:commandButton value="Actualizar"  update="@form" action="#{ciudadBean.actualizarRegion}" onclick="PF('actualizar-region').hide()" />
+                        </f:facet>
+                    </h:panelGrid>
+                    <p:growl showDetail="true"/>
+                </h:form>
+            </p:dialog>
+
+            <p:dialog header="Eliminar" widgetVar="eliminar-region" minHeight="40" width="350" showEffect="fade" modal="true">
+                <h:form>
+                    <h:panelGrid cellpadding="4" columns="2">
+                        <p class="p-m-0">
+                            Confirma eliminar esta Region
+                        </p>
+                        <f:facet name="footer">
+                            <p:commandButton value="No" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('eliminar-region').hide()"/>
+                            <p:commandButton value="Si" style="width: 5rem" update="@form" action="#{ciudadBean.eliminarRegion}" onclick="PF('eliminar-region').hide()"/>
+                        </f:facet>
+                    </h:panelGrid>
+                    <p:growl showDetail="true"/>
+                </h:form>
+            </p:dialog>
+
+
+            <p:dialog header="Actualizar" widgetVar="actualizar-ciudad" minHeight="40" width="350" showEffect="fade" modal="true">
+                <h:form>
+                    <h:panelGrid cellpadding="4" columns="2">
+                        <p:outputLabel value="Nombre Ciudad" for="nombre_ci"/>
+                        <p:inputText id="nombre_ci" value="#{ciudadBean.ciudad.ciudad}" required="true"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Cancelar" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('actualizar-ciudad').hide()"/>
+                        <p:commandButton value="Actualizar"  update="@form" action="#{ciudadBean.actualizarCiudad}" onclick="PF('actualizar-ciudad').hide()" />
+                    </f:facet>
+                    </h:panelGrid>
+                    <p:growl showDetail="true"/>
+                </h:form>
+            </p:dialog>
+
+            <p:dialog header="Eliminar" widgetVar="eliminar-ciudad" minHeight="40" width="350" showEffect="fade" modal="true">
+                <h:form>
+                    <h:panelGrid cellpadding="4" columns="2">
+                    <p class="p-m-0">
+                        Confirma eliminar esta Ciudad
+                    </p>
+                    <f:facet name="footer">
+                        <p:commandButton value="No" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('eliminar-ciudad').hide()"/>
+                        <p:commandButton value="Si" style="width: 5rem" update="@form" action="#{ciudadBean.eliminarCiudad}" onclick="PF('eliminar-ciudad').hide()"/>
+                    </f:facet>
+                    </h:panelGrid>
+                    <p:growl showDetail="true"/>
+                </h:form>
+            </p:dialog>
+
+        </div>
+
     </ui:define>
 </ui:composition>
 

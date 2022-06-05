@@ -7,10 +7,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-
 <ui:composition template="/WEB-INF/administrador.xhtml">
     <ui:define name="title">Vuelos</ui:define>
     <ui:define name="content">
+
         <div class="card">
             <h:form>
                 <p:breadCrumb>
@@ -21,69 +21,126 @@
             </h:form>
         </div>
 
+        <div class="p-grid" >
+            <div class="p-col-4" >
+                <p:panel>
+                    <h:form>
+                    <style>
+                        /* reset on the showcase style*/
+                        body .ui-panelgrid .ui-panelgrid-cell {
+                            background-color: transparent;
+                        }
 
-        <div class="card">
+                        /* example use of styles for your form */
+                        .my-heading-row {
+                            background-color: var(--surface-c);
+                            font-weight: bold;
+                        }
+                    </style>
 
-            <style>
-                /* reset on the showcase style*/
-                body .ui-panelgrid .ui-panelgrid-cell {
-                    background-color: transparent;
-                }
+                    <p:panelGrid columns="2"
+                                 columnClasses="p-text-justify p-col-4"
+                                 layout="grid"
+                                 styleClass="ui-panelgrid-blank ui-fluid"
+                                 style="border:0px none; background-color:transparent">
 
-                /* example use of styles for your form */
-                .my-heading-row {
-                    background-color: var(--surface-c);
-                    font-weight: bold;
-                }
-            </style>
+                        <p:row styleClass="my-heading-row ">
+                            Registrar
+                        </p:row>
 
-            <!--
-            Note: Rows and columns can have style, styleClass, and id.
-            Note: A column with a defined styleClass will ignore the styleClass specified in the columnClasses list.
-            Note: Note the use of ui-fluid to ensure that components are sized correctly and the use of ui-panelgrid-blank to remove borders.
-            -->
-            <p:panelGrid columns="4"
-                         columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
-                         layout="grid"
-                         styleClass="ui-panelgrid-blank ui-fluid"
-                         style="border:0px none; background-color:transparent;">
+                        <p:outputLabel for="n_vuelo" value="Numero de vuelo"/>
+                        <p:inputText id="n_vuelo" value="#{vueloBean.vuelo.numeroVuelo}" required="true"/>
 
-                <p:row styleClass="my-heading-row">
-                    Registrar Vuelo
-                </p:row>
+                        <p:outputLabel for="a_vuelo" value="Aerolinea"/>
+                        <p:inputText id="a_vuelo" value="#{vueloBean.vuelo.aerolinea}" required="true"/>
 
-                <p:outputLabel for="@next" value="Numero de vuelo"/>
-                <p:inputText/>
+                        <p:outputLabel for="origen_c" value="Origen"/>
+                        <p:selectOneMenu id="origen_c" value="#{ciudadBean.ciudad.ciudad}" converter="#{ciudadConverter}" required="true" requiredMessage="El origen es obligatorio">
+                            <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems  value="#{ciudadBean.ciudades}" var="origen" itemLabel="#{origen.ciudad}"/>
+                        </p:selectOneMenu>
 
-                <p:outputLabel for="@next" value="Aerolinea"/>
-                <p:inputText/>
+                        <p:outputLabel for="destino_c" value="Destino"/>
+                        <p:selectOneMenu id="destino_c" value="#{ciudadBean.ciudad.ciudad}" converter="#{ciudadConverter}" required="true" requiredMessage="El destino es obligatorio">
+                            <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems  value="#{ciudadBean.ciudades}" var="destino" itemLabel="#{destino.ciudad}"/>
+                        </p:selectOneMenu>
 
-                <p:outputLabel for="origen" value="Origen"/>
-                <p:selectOneMenu id="origen">
-                    <f:selectItem itemLabel="Origen" itemValue="" noSelectionOption="true"/>
-                </p:selectOneMenu>
+                        <p:outputLabel for="salida" value="Fecha de Salida"/>
+                        <p:datePicker id="salida" value="#{calendarJava8View.date4}"
+                                      mindate="#{calendarJava8View.minDateTime}"
+                                      maxdate="#{calendarJava8View.maxDateTime}"
+                                      readonlyInput="true" required="true"/>
 
-                <p:outputLabel for="destino" value="Destino"/>
-                <p:selectOneMenu id="destino" >
-                    <f:selectItem itemLabel="Destino" itemValue="" noSelectionOption="true"/>
-                </p:selectOneMenu>
+                        <p:outputLabel for="llegada" value="Fecha de Llegada"/>
+                        <p:datePicker id="llegada" value="#{calendarJava8View.dateTime4}"
+                                      mindate="#{calendarJava8View.minDateTime}"
+                                      maxdate="#{calendarJava8View.maxDateTime}"
+                                      required="true"/>
 
-                <p:outputLabel for="salida" value="Fecha de Salida"/>
-                <p:datePicker id="salida" value="#{calendarJava8View.date4}"
-                              mindate="#{calendarJava8View.minDateTime}"
-                              maxdate="#{calendarJava8View.maxDateTime}"
-                              readonlyInput="true"/>
+                        <p:outputLabel for="@next" value="Estado"/>
+                        <p:inputText/>
 
-                <p:outputLabel for="llegada" value="Fecha de Llegada"/>
-                <p:datePicker id="llegada" value="#{calendarJava8View.dateTime4}"
-                              mindate="#{calendarJava8View.minDateTime}"
-                              maxdate="#{calendarJava8View.maxDateTime}"/>
+                        <p:outputLabel/>
+                        <p:commandButton type="button" value="Registrar" styleClass="ui-button-help" />
 
-                <p:outputLabel for="@next" value="Estado"/>
-                <p:inputText/>
+                    </p:panelGrid>
 
-            </p:panelGrid>
+                    </h:form>
+
+                </p:panel>
+            </div>
+
+            <div class="p-col-8 ">
+                <p:panel>
+                    <h:form>
+                        <p:panelGrid columns="2"
+                                     columnClasses="p-text-justify p-col-4"
+                                     layout="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent">
+
+                        <p:row styleClass="my-heading-row ">
+                            Vuelos
+                        </p:row>
+                        </p:panelGrid>
+
+                        <div class="card">
+                            <p:dataTable id="lista_v" value="#{vueloBean.vuelos}" var="vuelo" paginator="true"
+                                         rows="7" rowSelectMode="add" paginatorPosition="bottom">
+                                <p:column headerText="Aerolinea" sortBy="#{vueloBean.vuelo.aerolinea}">
+                                    <h:outputText value="#{vueloBean.vuelo.aerolinea}" />
+                                </p:column>
+
+
+                                <p:column headerText="Origen" sortBy="#{vueloBean.vuelo.origen}">
+                                    <h:outputText value="#{vueloBean.vuelo.origen}"  />
+                                </p:column>
+
+                                <p:column headerText="Destino" sortBy="#{vueloBean.vuelo.destino}">
+                                    <h:outputText value="#{vueloBean.vuelo.destino}" />
+                                </p:column>
+
+                                <p:column headerText="Salida" sortBy="#{vueloBean.vuelo.fechaSalida}">
+                                    <h:outputText value="#{vueloBean.vuelo.fechaSalida}" />
+                                </p:column>
+
+                                <p:column headerText="Llegada"> sortBy="#{vueloBean.vuelo.fechaLlegada}"
+                                    <h:outputText value="#{vueloBean.vuelo.fechaLlegada}" />
+                                </p:column>
+
+                                <p:column headerText="Estado" sortBy="#{vueloBean.vuelo.estado}">
+                                    <h:outputText value="#{vueloBean.vuelo.estado}" />
+                                </p:column>
+
+                            </p:dataTable>
+                        </div>
+                    </h:form>
+
+                </p:panel>
+            </div>
         </div>
+
     </ui:define>
 </ui:composition>
 

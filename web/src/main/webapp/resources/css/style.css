@@ -110,3 +110,12 @@ body .ui-dataview .ui-dataview-header, .ui-dataview-row.ui-g{
 .ui-linkbutton a{
     text-decoration: none;
 }
+
+.panel-form{
+    background-color: transparent;
+}
+
+.my-heading-row {
+    background-color: var(--surface-c);
+    font-weight: bold;
+}

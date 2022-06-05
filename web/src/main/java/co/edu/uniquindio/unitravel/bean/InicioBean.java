@@ -17,6 +17,9 @@ import java.util.List;
 @Setter
 public class InicioBean implements Serializable {
 
+    @Getter @Setter
+    public String mensaje = "Pfff";
+
     private final HotelService hotelService;
 
     @Getter @Setter
@@ -26,8 +29,6 @@ public class InicioBean implements Serializable {
     public void inicializar(){
         hotelList = hotelService.listarHoteles();
     }
-
-    //private String mensaje = "Mi primera página en JSF";
 
     public InicioBean(HotelService hotelService) {
         this.hotelService = hotelService;

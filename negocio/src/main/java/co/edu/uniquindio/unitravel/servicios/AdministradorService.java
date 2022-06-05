@@ -51,7 +51,7 @@ public interface AdministradorService {
 
     List<Ciudad> listarCiudadesRegion(Integer idRegion) throws Exception;
 
-    List<Ciudad> buscarCiudadPorNombre(String ciudad);
+    Optional<Ciudad> buscarCiudadPorNombre(String ciudad);
 
     Optional<Ciudad> validarCiudad(Integer idRegion, String ciudad) throws Exception;
 }
