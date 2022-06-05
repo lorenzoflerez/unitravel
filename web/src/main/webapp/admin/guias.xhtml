@@ -23,14 +23,170 @@
         </div>
 
         <div class="p-grid" >
-            <div class="p-col-4" >
-                <p:panel>
-                    <h:form>
+        <div class="p-col-4" >
+            <p:panel>
+                <h:form>
+                    <style>
+                        /* reset on the showcase style*/
+                        body .ui-panelgrid .ui-panelgrid-cell {
+                            background-color: transparent;
+                        }
 
-                    </h:form>
-                </p:panel>
-            </div>
+                        /* example use of styles for your form */
+                        .my-heading-row {
+                            background-color: var(--surface-c);
+                            font-weight: bold;
+                        }
+                    </style>
+
+                    <p:panelGrid columns="2"
+                                 columnClasses="p-text-justify p-col-4"
+                                 layout="grid"
+                                 styleClass="ui-panelgrid-blank ui-fluid"
+                                 style="height: 705px; border:0px none; background-color:transparent">
+
+                        <p:row styleClass="my-heading-row ">
+                            Registrar Guia
+                        </p:row>
+
+                        <p:outputLabel for="guia_id" value="Codigo:"/>
+                        <p:inputMask id="guia_id" value="#{tourBean.guia.id}" required="true" label="Codigo"
+                                     mask="9[999999999]" validateMask="false" size="25">
+                            <f:validateLength minimum="3" maximum="10"/>
+                        </p:inputMask>
+
+                        <p:outputLabel for="guia_n" value="Nombre"/>
+                        <p:inputText id="guia_n" value="#{tourBean.guia.nombre}" required="true"/>
+
+                        <p:outputLabel for="guia_a" value="Apellido"/>
+                        <p:inputText id="guia_a" value="#{tourBean.guia.apellido}" required="true"/>
+
+                        <p:outputLabel for="guia_nu" value="Nickname"/>
+                        <p:inputText id="guia_nu" value="#{tourBean.guia.nickname}" required="true"/>
+
+                        <h:outputLabel for="guia_e" value="Correo:"/>
+                        <p:inputText id="guia_e" value="#{tourBean.guia.email}" required="true"
+                                     validatorMessage="Los valores no corresponden con un correo electronico" size="25">
+                            <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)"/>
+                        </p:inputText>
+
+                        <h:outputLabel for="guia_p" value="Contraseña:"/>
+                        <p:password id="guia_p" value="#{tourBean.guia.password}" required="true"
+                                    toggleMask="true" redisplay="true" promptLabel="Ingresa tu contraseña"
+                                    weakLabel="Débil" goodLabel="Buena" strongLabel="Fuerte" size="22"/>
+
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:commandButton value="Registrar Guia" styleClass="ui-button-help" action="#{tourBean.guardarGuia()}" update="@form, tabla-g"/>
+                    </p:panelGrid>
+                    <p:growl showDetail="true"/>
+                </h:form>
+            </p:panel>
         </div>
+
+        <div class="p-col-8 ">
+            <p:panel>
+                <h:form id="tabla-g">
+                    <p:panelGrid columns="2"
+                                 columnClasses="p-text-justify p-col-4"
+                                 layout="grid"
+                                 styleClass="ui-panelgrid-blank ui-fluid"
+                                 style="border:0px none; background-color:transparent">
+
+                        <p:row styleClass="my-heading-row ">
+                            Guias
+                        </p:row>
+                    </p:panelGrid>
+
+                    <div class="card" style="height: 650px">
+                        <p:dataTable id="lista_g" value="#{tourBean.guias}" var="guia" paginator="true"
+                                     rows="7" rowSelectMode="add" paginatorPosition="bottom">
+
+                            <p:column headerText="Codigo" sortBy="#{guia.id}">
+                                <h:outputText value="#{guia.id}" />
+                            </p:column>
+
+                            <p:column headerText="Nombre" sortBy="#{guia.nombre}">
+                                <h:outputText value="#{guia.nombre}"  />
+                            </p:column>
+
+                            <p:column headerText="Apellido" sortBy="#{guia.apellido}">
+                                <h:outputText value="#{guia.apellido}" />
+                            </p:column>
+
+                            <p:column headerText="Nickname" sortBy="#{guia.nickname}">
+                                <h:outputText value="#{guia.nickname}" />
+                            </p:column>
+
+                            <p:column headerText="Registro"> sortBy="#{guia.fechaRegistro}"
+                                <h:outputText value="#{guia.fechaRegistro}" />
+                            </p:column>
+
+                            <p:column headerText="Correo" sortBy="#{guia.email}">
+                                <h:outputText value="#{guia.email}" />
+                            </p:column>
+
+                            <p:column exportable="false">
+                                <p:commandButton icon="pi pi-pencil" style="margin-right: 5px" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-guia').show()">
+                                    <f:setPropertyActionListener value="#{guia}" target="#{tourBean.guia}"/>
+                                </p:commandButton>
+                                <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" onclick="PF('eliminar-guia').show()">
+                                    <f:setPropertyActionListener value="#{guia}" target="#{tourBean.guia}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form>
+                <p:dialog header="Actualizar" widgetVar="actualizar-guia" minHeight="40" width="350" showEffect="fade" modal="true">
+                    <h:form>
+                        <h:panelGrid cellpadding="4" columns="2">
+
+                            <p:outputLabel value="Codigo" for="codigo_g"/>
+                            <p:inputText id="codigo_g" value="#{tourBean.guia.id}" required="true"/>
+
+                            <p:outputLabel value="Nombre" for="nombre_g"/>
+                            <p:inputText id="nombre_g" value="#{tourBean.guia.nombre}" required="true"/>
+
+                            <p:outputLabel value="Apellido" for="apellido_g"/>
+                            <p:inputText id="apellido_g" value="#{tourBean.guia.apellido}" required="true"/>
+
+                            <p:outputLabel value="Nickname" for="nick_g"/>
+                            <p:inputText id="nick_g" value="#{tourBean.guia.nickname}" required="true"/>
+
+                            <p:outputLabel value="Correo" for="correo_g"/>
+                            <p:inputText id="correo_g" value="#{tourBean.guia.email}" required="true"
+                                         validatorMessage="Los valores no corresponden con un correo electronico">
+                                <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)"/>
+                            </p:inputText>
+
+                            <f:facet name="footer">
+                                <p:commandButton value="Cancelar" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('actualizar-guia').hide()"/>
+                                <p:commandButton value="Actualizar"  update="@form, tabla-g" action="#{tourBean.actualizarGuia}" onclick="PF('actualizar-guia').hide()" />
+                            </f:facet>
+                        </h:panelGrid>
+                        <p:growl showDetail="true"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog header="Eliminar" widgetVar="eliminar-guia" minHeight="40" width="350" showEffect="fade" modal="true">
+                    <h:form>
+                        <h:panelGrid cellpadding="4" columns="2">
+                            <p class="p-m-0">
+                                Confirma eliminar este Guia
+                            </p>
+                            <f:facet name="footer">
+                                <p:commandButton value="No" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('eliminar-guia').hide()"/>
+                                <p:commandButton value="Si" style="width: 5rem" update="@form, tabla-g" action="#{tourBean.eliminarGuia}" onclick="PF('eliminar-guia').hide()"/>
+                            </f:facet>
+                        </h:panelGrid>
+                        <p:growl showDetail="true"/>
+                    </h:form>
+                </p:dialog>
+            </p:panel>
+        </div>
+    </div>
+
 
 
 

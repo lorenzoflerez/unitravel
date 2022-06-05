@@ -359,10 +359,7 @@ public class HotelServiceImplementation implements HotelService{
 
     @Override
     public Gerente registrarGerente(Gerente gerente) throws Exception {
-        Optional<Gerente> gerenteBuscado = gerenteRepository.findById(gerente.getId());
-        if(gerenteBuscado.isPresent())
-            throw new Exception("El código ya se encuentra registrado");
-        gerenteBuscado = gerenteRepository.buscarPorEmail(gerente.getEmail());
+        Optional<Gerente> gerenteBuscado = gerenteRepository.buscarPorEmail(gerente.getEmail());
         if(gerenteBuscado.isPresent())
             throw new Exception("El email ya se encuentra registrado");
         gerenteBuscado = gerenteRepository.buscarPorNickname(gerente.getNickname());

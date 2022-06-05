@@ -22,11 +22,11 @@
             </h:form>
         </div>
 
-        <div class="p-grid" >
+        <div class="p-grid">
 
 <!--        Formularios Regiones-->
             <div class="p-col-4" >
-                <p:panel>
+                <p:panel style="height: 740px">
                     <h:form>
                         <style>
                             /* reset on the showcase style*/
@@ -54,7 +54,7 @@
                             <p:inputText id="nombre_r" value="#{ciudadBean.region.region}" required="true"/>
 
                             <p:outputLabel  value=""/>
-                            <p:commandButton value="Registrar Region" styleClass="ui-button-help" action="#{ciudadBean.guardarRegion}" update="@form"/>
+                            <p:commandButton value="Registrar Region" styleClass="ui-button-help" action="#{ciudadBean.guardarRegion}" update="@form, p-regiones"/>
 
                             <p:growl showDetail="true"/>
 
@@ -64,7 +64,7 @@
                         <p:growl showDetail="true"/>
 
                     </h:form>
-                    <h:form>
+                    <h:form id="p-regiones">
                         <p:panelGrid columns="2"
                                      columnClasses="p-text-justify p-col-4"
                                      layout="grid"
@@ -76,7 +76,7 @@
                             </p:row>
                         </p:panelGrid>
 
-                        <div class="card">
+                        <div class="card" style="height: 413px">
                             <p:dataTable id="lista_r" value="#{ciudadBean.regiones}" var="region" paginator="true"
                                          rows="4" rowSelectMode="add" paginatorPosition="bottom">
                                 <p:column headerText="Region"  sortBy="#{region.region}">
@@ -84,7 +84,7 @@
                                 </p:column>
 
                                 <p:column exportable="false">
-                                    <p:commandButton icon="pi pi-pencil" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-region').show()">
+                                    <p:commandButton icon="pi pi-pencil" style="margin-right: 5px" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-region').show()">
                                         <f:setPropertyActionListener value="#{region}" target="#{ciudadBean.region}"/>
                                     </p:commandButton>
                                     <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" onclick="PF('eliminar-region').show()">
@@ -101,7 +101,7 @@
 
 <!--        Formularios Ciudades-->
             <div class="p-col-8" >
-                <p:panel>
+                <p:panel style="height: 740px">
                     <h:form>
                         <style>
                             /* reset on the showcase style*/
@@ -141,7 +141,6 @@
 
                         </p:panelGrid>
                         <p:growl showDetail="true"/>
-
                     </h:form>
                     <h:form>
                         <p:panelGrid columns="2"
@@ -155,7 +154,7 @@
                             </p:row>
                         </p:panelGrid>
 
-                        <div class="card">
+                        <div class="card" style="height: 413px">
                             <p:dataTable id="lista_c" value="#{ciudadBean.ciudades}" var="ciudad" paginator="true"
                                          rows="4" rowSelectMode="add" paginatorPosition="bottom">
                                 <p:column headerText="Region"  sortBy="#{ciudad.region.region}">
@@ -166,7 +165,7 @@
                                     <h:outputText value="#{ciudad.ciudad}"/>
                                 </p:column>
                                 <p:column exportable="false">
-                                    <p:commandButton icon="pi pi-pencil" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-ciudad').show()">
+                                    <p:commandButton icon="pi pi-pencil" style="margin-right: 5px" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-ciudad').show()">
                                         <f:setPropertyActionListener value="#{ciudad}" target="#{ciudadBean.ciudad}"/>
                                     </p:commandButton>
                                     <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" onclick="PF('eliminar-ciudad').show()">

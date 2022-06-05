@@ -43,54 +43,149 @@
                                      columnClasses="p-text-justify p-col-4"
                                      layout="grid"
                                      styleClass="ui-panelgrid-blank ui-fluid"
-                                     style="border:0px none; background-color:transparent">
+                                     style="height: 705px; border:0px none; background-color:transparent">
 
                             <p:row styleClass="my-heading-row ">
                                 Registrar Gerente
                             </p:row>
 
+                            <p:outputLabel for="gerente_id" value="Codigo:"/>
+                            <p:inputMask id="gerente_id" value="#{hotelBean.gerente.id}" required="true" label="Codigo"
+                                         mask="9[999999999]" validateMask="false" size="25">
+                                <f:validateLength minimum="3" maximum="10"/>
+                            </p:inputMask>
+
                             <p:outputLabel for="gerente_n" value="Nombre"/>
-                            <p:inputText id="gerente_n" value="#{vueloBean.vuelo.numeroVuelo}" required="true"/>
+                            <p:inputText id="gerente_n" value="#{hotelBean.gerente.nombre}" required="true"/>
 
-                            <p:outputLabel for="a_vuelo" value="Aerolinea"/>
-                            <p:inputText id="a_vuelo" value="#{vueloBean.vuelo.aerolinea}" required="true"/>
+                            <p:outputLabel for="gerente_a" value="Apellido"/>
+                            <p:inputText id="gerente_a" value="#{hotelBean.gerente.apellido}" required="true"/>
 
-                            <p:outputLabel for="origen_c" value="Origen"/>
-                            <p:selectOneMenu id="origen_c" value="#{ciudadBean.ciudad.ciudad}" converter="#{ciudadConverter}" required="true" requiredMessage="El origen es obligatorio">
-                                <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
-                                <f:selectItems  value="#{ciudadBean.ciudades}" var="origen" itemLabel="#{origen.ciudad}"/>
-                            </p:selectOneMenu>
+                            <p:outputLabel for="gerente_nu" value="Nickname"/>
+                            <p:inputText id="gerente_nu" value="#{hotelBean.gerente.nickname}" required="true"/>
 
-                            <p:outputLabel for="destino_c" value="Destino"/>
-                            <p:selectOneMenu id="destino_c" value="#{ciudadBean.ciudad.ciudad}" converter="#{ciudadConverter}" required="true" requiredMessage="El destino es obligatorio">
-                                <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
-                                <f:selectItems  value="#{ciudadBean.ciudades}" var="destino" itemLabel="#{destino.ciudad}"/>
-                            </p:selectOneMenu>
+                            <h:outputLabel for="gerente_e" value="Correo:"/>
+                            <p:inputText id="gerente_e" value="#{hotelBean.gerente.email}" required="true"
+                                         validatorMessage="Los valores no corresponden con un correo electronico" size="25">
+                                <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)"/>
+                            </p:inputText>
 
-                            <p:outputLabel for="salida" value="Fecha de Salida"/>
-                            <p:datePicker id="salida" value="#{calendarJava8View.date4}"
-                                          mindate="#{calendarJava8View.minDateTime}"
-                                          maxdate="#{calendarJava8View.maxDateTime}"
-                                          readonlyInput="true" required="true"/>
-
-                            <p:outputLabel for="llegada" value="Fecha de Llegada"/>
-                            <p:datePicker id="llegada" value="#{calendarJava8View.dateTime4}"
-                                          mindate="#{calendarJava8View.minDateTime}"
-                                          maxdate="#{calendarJava8View.maxDateTime}"
-                                          required="true"/>
-
-                            <p:outputLabel for="@next" value="Estado"/>
-                            <p:inputText/>
+                            <h:outputLabel for="gerente_p" value="Contraseña:"/>
+                            <p:password id="gerente_p" value="#{hotelBean.gerente.password}" required="true"
+                                        toggleMask="true" redisplay="true" promptLabel="Ingresa tu contraseña"
+                                        weakLabel="Débil" goodLabel="Buena" strongLabel="Fuerte" size="22"/>
 
                             <p:outputLabel/>
-                            <p:commandButton type="button" value="Registrar" styleClass="ui-button-help" />
-
+                            <p:outputLabel/>
+                            <p:outputLabel/>
+                            <p:commandButton value="Registrar Gerente" styleClass="ui-button-help" action="#{hotelBean.guardarGerente}" update="@form, tabla-g"/>
                         </p:panelGrid>
+                        <p:growl showDetail="true"/>
                     </h:form>
                 </p:panel>
             </div>
-        </div>
 
+            <div class="p-col-8 ">
+                <p:panel>
+                    <h:form id="tabla-g">
+                        <p:panelGrid columns="2"
+                                     columnClasses="p-text-justify p-col-4"
+                                     layout="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent">
+
+                            <p:row styleClass="my-heading-row ">
+                                Gerentes
+                            </p:row>
+                        </p:panelGrid>
+
+                        <div class="card" style="height: 650px">
+                            <p:dataTable id="lista_g" value="#{hotelBean.gerentes}" var="gerente" paginator="true"
+                                         rows="7" rowSelectMode="add" paginatorPosition="bottom">
+
+                                <p:column headerText="Codigo" sortBy="#{gerente.id}">
+                                    <h:outputText value="#{gerente.id}" />
+                                </p:column>
+
+                                <p:column headerText="Nombre" sortBy="#{gerente.nombre}">
+                                    <h:outputText value="#{gerente.nombre}"  />
+                                </p:column>
+
+                                <p:column headerText="Apellido" sortBy="#{gerente.apellido}">
+                                    <h:outputText value="#{gerente.apellido}" />
+                                </p:column>
+
+                                <p:column headerText="Nickname" sortBy="#{gerente.nickname}">
+                                    <h:outputText value="#{gerente.nickname}" />
+                                </p:column>
+
+                                <p:column headerText="Registro"> sortBy="#{gerente.fechaRegistro}"
+                                    <h:outputText value="#{gerente.fechaRegistro}" />
+                                </p:column>
+
+                                <p:column headerText="Correo" sortBy="#{gerente.email}">
+                                    <h:outputText value="#{gerente.email}" />
+                                </p:column>
+
+                                <p:column exportable="false">
+                                    <p:commandButton icon="pi pi-pencil" style="margin-right: 5px" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-gerente').show()">
+                                        <f:setPropertyActionListener value="#{gerente}" target="#{hotelBean.gerente}"/>
+                                    </p:commandButton>
+                                    <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" onclick="PF('eliminar-gerente').show()">
+                                        <f:setPropertyActionListener value="#{gerente}" target="#{hotelBean.gerente}"/>
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </h:form>
+                    <p:dialog header="Actualizar" widgetVar="actualizar-gerente" minHeight="40" width="350" showEffect="fade" modal="true">
+                        <h:form>
+                            <h:panelGrid cellpadding="4" columns="2">
+
+                                <p:outputLabel value="Codigo" for="codigo_g"/>
+                                <p:inputText id="codigo_g" value="#{hotelBean.gerente.id}" required="true"/>
+
+                                <p:outputLabel value="Nombre" for="nombre_g"/>
+                                <p:inputText id="nombre_g" value="#{hotelBean.gerente.nombre}" required="true"/>
+
+                                <p:outputLabel value="Apellido" for="apellido_g"/>
+                                <p:inputText id="apellido_g" value="#{hotelBean.gerente.apellido}" required="true"/>
+
+                                <p:outputLabel value="Nickname" for="nick_g"/>
+                                <p:inputText id="nick_g" value="#{hotelBean.gerente.nickname}" required="true"/>
+
+                                <p:outputLabel value="Correo" for="correo_g"/>
+                                <p:inputText id="correo_g" value="#{hotelBean.gerente.email}" required="true"
+                                             validatorMessage="Los valores no corresponden con un correo electronico">
+                                    <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)"/>
+                                </p:inputText>
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="Cancelar" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('actualizar-gerente').hide()"/>
+                                    <p:commandButton value="Actualizar"  update="@form, tabla-g" action="#{hotelBean.actualizarGerente}" onclick="PF('actualizar-gerente').hide()" />
+                                </f:facet>
+                            </h:panelGrid>
+                            <p:growl showDetail="true"/>
+                        </h:form>
+                    </p:dialog>
+
+                    <p:dialog header="Eliminar" widgetVar="eliminar-gerente" minHeight="40" width="350" showEffect="fade" modal="true">
+                        <h:form>
+                            <h:panelGrid cellpadding="4" columns="2">
+                                <p class="p-m-0">
+                                    Confirma eliminar este Gerente
+                                </p>
+                                <f:facet name="footer">
+                                    <p:commandButton value="No" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('eliminar-gerente').hide()"/>
+                                    <p:commandButton value="Si" style="width: 5rem" update="@form, tabla-g" action="#{hotelBean.eliminarGerente()}" onclick="PF('eliminar-gerente').hide()"/>
+                                </f:facet>
+                            </h:panelGrid>
+                            <p:growl showDetail="true"/>
+                        </h:form>
+                    </p:dialog>
+                </p:panel>
+            </div>
+        </div>
 
     </ui:define>
 </ui:composition>

@@ -42,7 +42,7 @@
                                  columnClasses="p-text-justify p-col-4"
                                  layout="grid"
                                  styleClass="ui-panelgrid-blank ui-fluid"
-                                 style="border:0px none; background-color:transparent">
+                                 style="height: 705px; border:0px none; background-color:transparent">
 
                         <p:row styleClass="my-heading-row ">
                             Registrar
@@ -78,9 +78,11 @@
                                       maxdate="#{calendarJava8View.maxDateTime}"
                                       required="true"/>
 
-                        <p:outputLabel for="@next" value="Estado"/>
-                        <p:inputText/>
+                        <p:outputLabel for="e_vuelo" value="Estado"/>
+                        <p:inputText id="e_vuelo" value="#{vueloBean.vuelo.estado}" required="true"/>
 
+                        <p:outputLabel/>
+                        <p:outputLabel/>
                         <p:outputLabel/>
                         <p:commandButton type="button" value="Registrar" styleClass="ui-button-help" />
 
@@ -105,7 +107,7 @@
                         </p:row>
                         </p:panelGrid>
 
-                        <div class="card">
+                        <div class="card" style="height: 650px">
                             <p:dataTable id="lista_v" value="#{vueloBean.vuelos}" var="vuelo" paginator="true"
                                          rows="7" rowSelectMode="add" paginatorPosition="bottom">
                                 <p:column headerText="Aerolinea" sortBy="#{vueloBean.vuelo.aerolinea}">
@@ -131,6 +133,15 @@
 
                                 <p:column headerText="Estado" sortBy="#{vueloBean.vuelo.estado}">
                                     <h:outputText value="#{vueloBean.vuelo.estado}" />
+                                </p:column>
+
+                                <p:column exportable="false">
+                                    <p:commandButton icon="pi pi-pencil" style="margin-right: 5px" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-region').show()">
+                                        <f:setPropertyActionListener value="#{region}" target="#{ciudadBean.region}"/>
+                                    </p:commandButton>
+                                    <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" onclick="PF('eliminar-region').show()">
+                                        <f:setPropertyActionListener value="#{region}" target="#{ciudadBean.region}"/>
+                                    </p:commandButton>
                                 </p:column>
 
                             </p:dataTable>
