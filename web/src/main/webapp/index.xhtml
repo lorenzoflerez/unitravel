@@ -11,7 +11,16 @@
 <ui:composition template="/WEB-INF/template.xhtml">
     <ui:define name="title">Inicio</ui:define>
     <ui:define name="content">
+        <h:form>
+            <div class="input-search ui-inputgroup">
+                <p:inputText placeholder="¿Qué Hotel está buscando?" required="true" value="#{busquedaBean.busqueda}" />
+                <p:commandButton update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}" />
 
+            </div>
+        </h:form>
+
+        <p>Lista de ciudades</p>
+        <p>Hoteles recomendados</p>
     </ui:define>
 </ui:composition>
 

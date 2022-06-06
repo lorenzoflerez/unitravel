@@ -66,10 +66,9 @@ public interface PaqueteService {
 
     List<Guia> listarGuias();
 
-    Guia buscarAdministradorPorNickname(String nickname) throws Exception;
+    Guia buscarGuiaPorNickname(String nickname) throws Exception;
 
-    Guia buscarAdministradorPorEmail(String email) throws Exception;
-
+    Guia buscarGuiaPorEmail(String email) throws Exception;
 
     Guia validarGuia(String email, String password) throws Exception;
 

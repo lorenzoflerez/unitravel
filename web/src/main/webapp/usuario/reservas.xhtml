@@ -8,10 +8,132 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-<ui:composition template="/WEB-INF/template.xhtml">
+<ui:composition template="/WEB-INF/usuario.xhtml">
     <ui:define name="title">Reservas</ui:define>
     <ui:define name="content">
+        <div class="card">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="Home" outcome="/index.xhtml"/>
+                    <p:menuitem value="Cliente"/>
+                    <p:menuitem value="Reservas"/>
+                </p:breadCrumb>
+            </h:form>
+        </div>
 
+
+        <div class="card">
+
+            <style>
+                /* reset on the showcase style*/
+                body .ui-panelgrid .ui-panelgrid-cell {
+                    background-color: transparent;
+                }
+
+                /* example use of styles for your form */
+                .my-heading-row {
+                    background-color: var(--surface-c);
+                    font-weight: bold;
+                }
+            </style>
+
+            <!--
+            Note: Rows and columns can have style, styleClass, and id.
+            Note: A column with a defined styleClass will ignore the styleClass specified in the columnClasses list.
+            Note: Note the use of ui-fluid to ensure that components are sized correctly and the use of ui-panelgrid-blank to remove borders.
+            -->
+            <p:panelGrid columns="4"
+                         columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                         layout="grid"
+                         styleClass="ui-panelgrid-blank ui-fluid"
+                         style="border:0px none; background-color:transparent;">
+
+                <p:row styleClass="my-heading-row">
+                    Registrar Reserva
+                </p:row>
+
+                <p:outputLabel for="@next" value="Numero de reserva"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Fecha reserva"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Fecha inicio"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Fecha fin"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Metodo de pago"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Numero de personas"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Total"/>
+                <p:inputText/>
+
+                <p:outputLabel for="reservaI" value="Reserva_Id"/>
+                <p:selectOneMenu id="reservaI" >
+                    <f:selectItem itemLabel="Reserva_Id" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="fecha_r" value="Fecha_R"/>
+                <p:selectOneMenu id="fecha_r">
+                    <f:selectItem itemLabel="Fecha_R" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="fecha_i" value="Fecha_I"/>
+                <p:selectOneMenu id="fecha_i">
+                    <f:selectItem itemLabel="Fecha_I" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="fecha_f" value="Fecha_F"/>
+                <p:selectOneMenu id="fecha_f">
+                    <f:selectItem itemLabel="Fecha_F" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="metodo_p" value="Metodo_P"/>
+                <p:selectOneMenu id="metodo_p">
+                    <f:selectItem itemLabel="Metodo_P" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="numero_p" value="Numero_P"/>
+                <p:selectOneMenu id="numero_p" >
+                    <f:selectItem itemLabel="Numero_P" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="total" value="Total_P"/>
+                <p:selectOneMenu id="total" >
+                    <f:selectItem itemLabel="Total_P" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="cliente" value="Cliente_Id"/>
+                <p:selectOneMenu id="cliente" >
+                    <f:selectItem itemLabel="Cliente_Id" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="reserva" value="Fecha de Reserva"/>
+                <p:datePicker id="reserva" value="#{calendarJava8View.date4}"
+                              mindate="#{calendarJava8View.minDateTime}"
+                              maxdate="#{calendarJava8View.maxDateTime}"
+                              readonlyInput="true"/>
+
+                <p:outputLabel for="fecha_inicio" value="Fecha de Inicio"/>
+                <p:datePicker id="fecha_inicio" value="#{calendarJava8View.dateTime4}"
+                              mindate="#{calendarJava8View.minDateTime}"
+                              maxdate="#{calendarJava8View.maxDateTime}"/>
+
+                <p:outputLabel for="fecha_fin" value="Fecha de Fin"/>
+                <p:datePicker id="fecha_fin" value="#{calendarJava8View.dateTime4}"
+                              mindate="#{calendarJava8View.minDateTime}"
+                              maxdate="#{calendarJava8View.maxDateTime}"/>
+
+                <p:outputLabel for="@next" value="Estado"/>
+                <p:inputText/>
+
+            </p:panelGrid>
+        </div>
     </ui:define>
 </ui:composition>
 

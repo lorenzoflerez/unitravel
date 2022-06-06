@@ -14,45 +14,33 @@
     <h:outputStylesheet library="css" name="bootstrap.min.css" />
     <h:outputStylesheet library="css" name="style.css" />
     <h:outputScript library="js" name="bootstrap.bundle.min.js" />
+    <h:outputScript library="js" name="primefaces.dateformat.js" />
+    <h:outputStylesheet library="webjars" name="primeflex/2.0.0/primeflex.min.css" />
 </h:head>
 
 <h:body>
-    <div id = "encabezado" class="p-0 mb-0 fondo-h" >
+    <div id = "encabezado" class="p-0 mb-0 border-bottom fondo-h" >
         <div class="container ">
             <header class="p-0  text-white">
                 <div class="container">
                     <div class="d-flex flex-wrap align-items-center px-0  justify-content-center justify-content-lg-start">
                         <div class="d-flex flex-wrap align-items-center px-0  justify-content-center justify-content-lg-start">
-                            <a href="/" class="d-flex align-items-center mb-1 mb-lg-0 text-white text-decoration-none">
-                                <h:graphicImage library="img" name="icono.png" styleClass="icono-p"/>
-                                <span class="fs-4 ">Unitravel</span>
-                                <span class="fs-4 opacity-0">tabulacion</span>
-                            </a>
+                        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                            <h:graphicImage library="img" name="icono.png" styleClass="icono-p"/>
+                            <span class="fs-4">Unitravel</span>
+                            <span class="fs-4 opacity-0">tabulacion</span>
+                        </a>
                         </div>
 
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <li><a href="#" class="nav-link px-2 text-white">Destinos</a></li>
-                            <li><a href="#" class="nav-link px-2 text-white">Vuelos</a></li>
-                            <li><a href="#" class="nav-link px-2 text-white">Hoteles</a></li>
-                            <li><a href="#" class="nav-link px-2 text-white">Paquetes</a></li>
+                            <li><a href="atracciones.xhtml" class="nav-link px-2 text-white">Atracciones Turisticas</a></li>
+                            <li><a href="horarios.xhtml" class="nav-link px-2 text-white">Horarios</a></li>
+                            <li><a href="paquetes.xhtml" class="nav-link px-2 text-white">Paquetes</a></li>
                             <li><a href="#" class="nav-link px-2 text-white">Cuenta</a></li>
                         </ul>
-                        <h:form id="buscador_h" styleClass="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 
-
-                            <div class="p-col-12 p-md-2">
-                                <div class="ui-inputgroup">
-                                    <p:inputText placeholder="Buscar"/>
-                                    <p:commandButton icon="pi pi-search" styleClass="ui-button-secondary"/>
-                                </div>
-                            </div>
-
-  <!--                          <p:inputText type="search" class="form-control" placeholder="Search..." aria-label="Search"/>-->
-                        </h:form>
-
-                        <div class="text-end">
-                            <button type="button" class="btn btn-outline-dark me-2">Login</button>
-                            <button type="button" class="btn btn-outline-dark">Sign-up</button>
+                        <div class="text-end p-md-2">
+                            <button type="button" class="btn btn-outline-dark me-2">Salir</button>
                         </div>
                     </div>
                 </div>
@@ -62,9 +50,7 @@
 
 
     <div id = "contenido" class="fondo-c">
-        <div class="container" >
             <ui:insert name="content">contenido</ui:insert>
-        </div>
     </div>
 
 

@@ -53,6 +53,9 @@ public class TourBean implements Serializable {
     private List<PaqueteTuristico> paquetes;
 
     @Getter @Setter
+    private List<Lugar> lugares;
+
+    @Getter @Setter
     private List<ReservaPaquete> reservas;
 
     @PostConstruct
@@ -64,6 +67,7 @@ public class TourBean implements Serializable {
         reserva = new ReservaPaquete();
         guias = paqueteService.listarGuias();
         horarios = paqueteService.listarHorarios();
+        lugares = paqueteService.listarLugares();
         paquetes = paqueteService.listarPaquetesTuristicos();
         reservas = reservaService.listarReservasPaquete();
     }
@@ -95,6 +99,108 @@ public class TourBean implements Serializable {
             paqueteService.eliminarGuia(guia.getId());
             this.guia = null;
             FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_WARN, "Operación exitosa", "Se ha eliminado el guia turistico");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }catch (Exception e){
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }
+    }
+
+    public void guardarLugar(){
+        try{
+            paqueteService.registrarLugar(lugar);
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "Se ha registrado el sitio de interes");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }catch (Exception e){
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }
+    }
+
+    public void actualizarLugar(){
+        try{
+            paqueteService.actualizarLugar(lugar);
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "Se ha actualizado el sitio de interes");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }catch (Exception e){
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }
+    }
+
+    public void eliminarLugar() {
+        try{
+            paqueteService.eliminarLugar(lugar.getIdLugar());
+            this.guia = null;
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_WARN, "Operación exitosa", "Se ha eliminado el sitio de interes");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }catch (Exception e){
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }
+    }
+
+    public void guardarHorario(){
+        try{
+            paqueteService.registrarHorario(horario);
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "Se ha registrado el horario");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }catch (Exception e){
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }
+    }
+
+    public void actualizarHorario(){
+        try{
+            paqueteService.actualizarHorario(horario);
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "Se ha actualizado el horario");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }catch (Exception e){
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }
+    }
+
+    public void eliminarHorario() {
+        try{
+            paqueteService.eliminarHorario(horario.getIdHorario());
+            this.guia = null;
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_WARN, "Operación exitosa", "Se ha eliminado el sitio de interes");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }catch (Exception e){
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }
+    }
+
+    public void guardarPaquete(){
+        try{
+            paqueteService.registrarPaqueteTuristico(paquete);
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "Se ha registrado el paquete turistico");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }catch (Exception e){
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }
+    }
+
+    public void actualizarPaquete(){
+        try{
+            paqueteService.actualizarPaqueteTuristico(paquete);
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "Se ha actualizado el paquete turistico");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }catch (Exception e){
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
+        }
+    }
+
+    public void eliminarPaquete() {
+        try{
+            paqueteService.eliminarPaqueteTuristico(paquete.getIdPaquete());
+            this.guia = null;
+            FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_WARN, "Operación exitosa", "Se ha eliminado el sitio de interes");
             FacesContext.getCurrentInstance().addMessage("msj-bean",msj);
         }catch (Exception e){
             FacesMessage msj= new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());

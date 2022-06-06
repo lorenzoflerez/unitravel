@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<ui:composition template="/WEB-INF/usuario.xhtml">
+    <ui:define name="title">Reservas Paquete</ui:define>
+    <ui:define name="content">
+        <div class="card">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="Home" outcome="/index.xhtml"/>
+                    <p:menuitem value="Usuario"/>
+                    <p:menuitem value="Reservas"/>
+                </p:breadCrumb>
+            </h:form>
+        </div>
+
+
+        <div class="card">
+
+            <style>
+                /* reset on the showcase style*/
+                body .ui-panelgrid .ui-panelgrid-cell {
+                    background-color: transparent;
+                }
+
+                /* example use of styles for your form */
+                .my-heading-row {
+                    background-color: var(--surface-c);
+                    font-weight: bold;
+                }
+            </style>
+
+            <!--
+            Note: Rows and columns can have style, styleClass, and id.
+            Note: A column with a defined styleClass will ignore the styleClass specified in the columnClasses list.
+            Note: Note the use of ui-fluid to ensure that components are sized correctly and the use of ui-panelgrid-blank to remove borders.
+            -->
+            <p:panelGrid columns="4"
+                         columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                         layout="grid"
+                         styleClass="ui-panelgrid-blank ui-fluid"
+                         style="border:0px none; background-color:transparent;">
+
+                <p:row styleClass="my-heading-row">
+                    Registrar Paquete
+                </p:row>
+
+                <p:outputLabel for="@next" value="Numero de reserva paquete"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Subtotal paquete"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Numero de paquete"/>
+                <p:inputText/>
+
+                <p:outputLabel for="@next" value="Reserva paquete"/>
+                <p:inputText/>
+
+                <p:outputLabel for="numeroReservaPaquete" value="Id_Reserva_P"/>
+                <p:selectOneMenu id="numeroReservaPaquete" >
+                    <f:selectItem itemLabel="Id_Reserva_P" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="subTotalP" value="SubTotal_P"/>
+                <p:selectOneMenu id="subTotalP">
+                    <f:selectItem itemLabel="SubTotal_P" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="paquete_I" value="Paquete_Id"/>
+                <p:selectOneMenu id="paquete_I">
+                    <f:selectItem itemLabel="Paquete_Id" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="reservaIdP" value="Reserva_Id_P"/>
+                <p:selectOneMenu id="reservaIdP">
+                    <f:selectItem itemLabel="Reserva_Id_P" itemValue="" noSelectionOption="true"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="@next" value="Estado"/>
+                <p:inputText/>
+
+            </p:panelGrid>
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>

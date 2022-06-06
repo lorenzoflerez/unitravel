@@ -229,12 +229,12 @@ public class PaqueteServiceImplementation implements PaqueteService{
     }
 
     @Override
-    public Guia buscarAdministradorPorNickname(String nickname) throws Exception {
+    public Guia buscarGuiaPorNickname(String nickname) throws Exception {
         return guiaRepository.findByNickname(nickname).orElseThrow(()-> new Exception("El nickname del guia no se encuentra registrado"));
     }
 
     @Override
-    public Guia buscarAdministradorPorEmail(String email) throws Exception {
+    public Guia buscarGuiaPorEmail(String email) throws Exception {
         return guiaRepository.findByEmail(email).orElseThrow(()-> new Exception("El email  del guia no se encuentra registrado"));
     }
 
