@@ -164,6 +164,7 @@
                                 <p:column headerText="Ciudad" sortBy="#{ciudad.ciudad}">
                                     <h:outputText value="#{ciudad.ciudad}"/>
                                 </p:column>
+
                                 <p:column exportable="false">
                                     <p:commandButton icon="pi pi-pencil" style="margin-right: 5px" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-ciudad').show()">
                                         <f:setPropertyActionListener value="#{ciudad}" target="#{ciudadBean.ciudad}"/>

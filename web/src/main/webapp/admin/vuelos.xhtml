@@ -25,69 +25,69 @@
             <div class="p-col-4" >
                 <p:panel>
                     <h:form>
-                    <style>
-                        /* reset on the showcase style*/
-                        body .ui-panelgrid .ui-panelgrid-cell {
-                            background-color: transparent;
-                        }
+                        <style>
+                            /* reset on the showcase style*/
+                            body .ui-panelgrid .ui-panelgrid-cell {
+                                background-color: transparent;
+                            }
 
-                        /* example use of styles for your form */
-                        .my-heading-row {
-                            background-color: var(--surface-c);
-                            font-weight: bold;
-                        }
-                    </style>
+                            /* example use of styles for your form */
+                            .my-heading-row {
+                                background-color: var(--surface-c);
+                                font-weight: bold;
+                            }
+                        </style>
 
-                    <p:panelGrid columns="2"
-                                 columnClasses="p-text-justify p-col-4"
-                                 layout="grid"
-                                 styleClass="ui-panelgrid-blank ui-fluid"
-                                 style="height: 705px; border:0px none; background-color:transparent">
+                        <p:panelGrid columns="2"
+                                     columnClasses="p-text-justify p-col-4"
+                                     layout="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="height: 705px; border:0px none; background-color:transparent">
 
-                        <p:row styleClass="my-heading-row ">
-                            Registrar
-                        </p:row>
+                            <p:row styleClass="my-heading-row ">
+                                Registrar
+                            </p:row>
 
-                        <p:outputLabel for="n_vuelo" value="Numero de vuelo"/>
-                        <p:inputText id="n_vuelo" value="#{vueloBean.vuelo.numeroVuelo}" required="true"/>
+                            <p:outputLabel for="n_vuelo" value="Numero de vuelo"/>
+                            <p:inputText id="n_vuelo" value="#{vueloBean.vuelo.numeroVuelo}" required="true"/>
 
-                        <p:outputLabel for="a_vuelo" value="Aerolinea"/>
-                        <p:inputText id="a_vuelo" value="#{vueloBean.vuelo.aerolinea}" required="true"/>
+                            <p:outputLabel for="a_vuelo" value="Aerolinea"/>
+                            <p:inputText id="a_vuelo" value="#{vueloBean.vuelo.aerolinea}" required="true"/>
 
-                        <p:outputLabel for="origen_c" value="Origen"/>
-                        <p:selectOneMenu id="origen_c" value="#{ciudadBean.ciudad.ciudad}" converter="#{ciudadConverter}" required="true" requiredMessage="El origen es obligatorio">
-                            <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
-                            <f:selectItems  value="#{ciudadBean.ciudades}" var="origen" itemLabel="#{origen.ciudad}"/>
-                        </p:selectOneMenu>
+                            <p:outputLabel for="origen_c" value="Origen"/>
+                            <p:selectOneMenu id="origen_c" value="#{vueloBean.vuelo.origen}" converter="#{ciudadConverter}" required="true" requiredMessage="El origen es obligatorio">
+                                <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
+                                <f:selectItems  value="#{ciudadBean.ciudades}" var="origen" itemLabel="#{origen.ciudad}"/>
+                            </p:selectOneMenu>
 
-                        <p:outputLabel for="destino_c" value="Destino"/>
-                        <p:selectOneMenu id="destino_c" value="#{ciudadBean.ciudad.ciudad}" converter="#{ciudadConverter}" required="true" requiredMessage="El destino es obligatorio">
-                            <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
-                            <f:selectItems  value="#{ciudadBean.ciudades}" var="destino" itemLabel="#{destino.ciudad}"/>
-                        </p:selectOneMenu>
+                            <p:outputLabel for="destino_c" value="Destino"/>
+                            <p:selectOneMenu id="destino_c" value="#{vueloBean.vuelo.destino}" converter="#{ciudadConverter}" required="true" requiredMessage="El destino es obligatorio">
+                                <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
+                                <f:selectItems  value="#{ciudadBean.ciudades}" var="destino" itemLabel="#{destino.ciudad}"/>
+                            </p:selectOneMenu>
 
-                        <p:outputLabel for="salida" value="Fecha de Salida"/>
-                        <p:datePicker id="salida" value="#{calendarJava8View.date4}"
-                                      mindate="#{calendarJava8View.minDateTime}"
-                                      maxdate="#{calendarJava8View.maxDateTime}"
-                                      readonlyInput="true" required="true"/>
+                            <p:outputLabel for="salida" value="Fecha de Salida"/>
+                            <p:datePicker id="salida" value="#{vueloBean.vuelo.fechaSalida}"
+                                          mindate="#{timeBean.minDateTime}"
+                                          maxdate="#{timeBean.maxDateTime}"
+                                          readonlyInput="true" required="true"/>
 
-                        <p:outputLabel for="llegada" value="Fecha de Llegada"/>
-                        <p:datePicker id="llegada" value="#{calendarJava8View.dateTime4}"
-                                      mindate="#{calendarJava8View.minDateTime}"
-                                      maxdate="#{calendarJava8View.maxDateTime}"
-                                      required="true"/>
+                            <p:outputLabel for="llegada" value="Fecha de Llegada"/>
+                            <p:datePicker id="llegada" value="#{vueloBean.vuelo.fechaLlegada}"
+                                          mindate="#{timeBean.minDateTime}"
+                                          maxdate="#{timeBean.maxDateTime}"
+                                          required="true"/>
 
-                        <p:outputLabel for="e_vuelo" value="Estado"/>
-                        <p:inputText id="e_vuelo" value="#{vueloBean.vuelo.estado}" required="true"/>
+                            <p:outputLabel for="e_vuelo" value="Estado"/>
+                            <p:inputText id="e_vuelo" value="#{vueloBean.vuelo.estado}" required="true"/>
 
-                        <p:outputLabel/>
-                        <p:outputLabel/>
-                        <p:outputLabel/>
-                        <p:commandButton type="button" value="Registrar" styleClass="ui-button-help" />
+                            <p:outputLabel/>
+                            <p:outputLabel/>
+                            <p:outputLabel/>
+                            <p:commandButton value="Registrar vuelo" styleClass="ui-button-help" action="#{vueloBean.guardarVuelo}" update="@form"/>
 
-                    </p:panelGrid>
-
+                        </p:panelGrid>
+                        <p:growl showDetail="true"/>
                     </h:form>
 
                 </p:panel>
@@ -102,51 +102,120 @@
                                      styleClass="ui-panelgrid-blank ui-fluid"
                                      style="border:0px none; background-color:transparent">
 
-                        <p:row styleClass="my-heading-row ">
-                            Vuelos
-                        </p:row>
+                            <p:row styleClass="my-heading-row ">
+                                Vuelos
+                            </p:row>
                         </p:panelGrid>
 
                         <div class="card" style="height: 650px">
                             <p:dataTable id="lista_v" value="#{vueloBean.vuelos}" var="vuelo" paginator="true"
                                          rows="7" rowSelectMode="add" paginatorPosition="bottom">
-                                <p:column headerText="Aerolinea" sortBy="#{vueloBean.vuelo.aerolinea}">
-                                    <h:outputText value="#{vueloBean.vuelo.aerolinea}" />
+                                <p:column headerText="Numero de vuelo" sortBy="#{vuelo.numeroVuelo}">
+                                    <h:outputText value="#{vuelo.numeroVuelo}" />
                                 </p:column>
 
-
-                                <p:column headerText="Origen" sortBy="#{vueloBean.vuelo.origen}">
-                                    <h:outputText value="#{vueloBean.vuelo.origen}"  />
+                                <p:column headerText="Aerolinea" sortBy="#{vuelo.aerolinea}">
+                                    <h:outputText value="#{vuelo.aerolinea}" />
                                 </p:column>
 
-                                <p:column headerText="Destino" sortBy="#{vueloBean.vuelo.destino}">
-                                    <h:outputText value="#{vueloBean.vuelo.destino}" />
+                                <p:column headerText="Origen" sortBy="#{vuelo.origen.ciudad}">
+                                    <h:outputText value="#{vuelo.origen.ciudad}"  />
                                 </p:column>
 
-                                <p:column headerText="Salida" sortBy="#{vueloBean.vuelo.fechaSalida}">
-                                    <h:outputText value="#{vueloBean.vuelo.fechaSalida}" />
+                                <p:column headerText="Destino" sortBy="#{vuelo.destino}">
+                                    <h:outputText value="#{vuelo.destino.ciudad}" />
                                 </p:column>
 
-                                <p:column headerText="Llegada"> sortBy="#{vueloBean.vuelo.fechaLlegada}"
-                                    <h:outputText value="#{vueloBean.vuelo.fechaLlegada}" />
+                                <p:column headerText="Salida" sortBy="#{vuelo.fechaSalida}">
+                                    <h:outputText value="#{vuelo.fechaSalida}" />
                                 </p:column>
 
-                                <p:column headerText="Estado" sortBy="#{vueloBean.vuelo.estado}">
-                                    <h:outputText value="#{vueloBean.vuelo.estado}" />
+                                <p:column headerText="Llegada" sortBy="#{vuelo.fechaLlegada}">
+                                    <h:outputText value="#{vuelo.fechaLlegada}" />
+                                </p:column>
+
+                                <p:column headerText="Estado" sortBy="#{vuelo.estado}">
+                                    <h:outputText value="#{vuelo.estado}" />
                                 </p:column>
 
                                 <p:column exportable="false">
-                                    <p:commandButton icon="pi pi-pencil" style="margin-right: 5px" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-region').show()">
-                                        <f:setPropertyActionListener value="#{region}" target="#{ciudadBean.region}"/>
+                                    <p:commandButton icon="pi pi-cog" style="margin-right: 2px" styleClass="edit-button rounded-button ui-button-help" onclick="PF('actualizar-vuelo').show()">
+                                        <f:setPropertyActionListener value="#{vuelo}" target="#{vueloBean.vuelo}"/>
                                     </p:commandButton>
-                                    <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" onclick="PF('eliminar-region').show()">
-                                        <f:setPropertyActionListener value="#{region}" target="#{ciudadBean.region}"/>
+                                    <p:commandButton icon="pi pi-pencil" style="margin-right: 2px" styleClass="edit-button rounded-button ui-button-success" onclick="PF('actualizar-vuelo').show()">
+                                        <f:setPropertyActionListener value="#{vuelo}" target="#{vueloBean.vuelo}"/>
+                                    </p:commandButton>
+                                    <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" onclick="PF('eliminar-vuelo').show()">
+                                        <f:setPropertyActionListener value="#{vuelo}" target="#{vueloBean.vuelo}"/>
                                     </p:commandButton>
                                 </p:column>
 
                             </p:dataTable>
                         </div>
+                        <p:growl showDetail="true"/>
                     </h:form>
+
+                    <p:dialog header="Actualizar" widgetVar="actualizar-vuelo" minHeight="40" minWidth="350" showEffect="fade" modal="true">
+                        <h:form>
+                            <h:panelGrid cellpadding="4" columns="2">
+
+                                <p:outputLabel for="vuelo_n" value="Numero de vuelo"/>
+                                <p:inputText id="vuelo_n" value="#{vueloBean.vuelo.numeroVuelo}" required="true"/>
+
+                                <p:outputLabel for="vuelo_a" value="Aerolinea"/>
+                                <p:inputText id="vuelo_a" value="#{vueloBean.vuelo.aerolinea}" required="true"/>
+
+                                <p:outputLabel for="vuelo_o" value="Origen"/>
+                                <p:selectOneMenu id="vuelo_o" value="#{vueloBean.vuelo.origen}" converter="#{ciudadConverter}" required="true" requiredMessage="El origen es obligatorio">
+                                    <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
+                                    <f:selectItems  value="#{ciudadBean.ciudades}" var="o" itemLabel="#{o.ciudad}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel for="vuelo_d" value="Destino"/>
+                                <p:selectOneMenu id="vuelo_d" value="#{vueloBean.vuelo.destino}" converter="#{ciudadConverter}" required="true" requiredMessage="El destino es obligatorio">
+                                    <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true"/>
+                                    <f:selectItems  value="#{ciudadBean.ciudades}" var="d" itemLabel="#{d.ciudad}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel for="vuelo_s" value="Fecha de Salida"/>
+                                <p:datePicker id="vuelo_s" value="#{vueloBean.vuelo.fechaSalida}"
+                                              mindate="#{timeBean.minDateTime}"
+                                              maxdate="#{timeBean.maxDateTime}"
+                                              readonlyInput="true" required="true"/>
+
+                                <p:outputLabel for="vuelo_l" value="Fecha de Llegada"/>
+                                <p:datePicker id="vuelo_l" value="#{vueloBean.vuelo.fechaLlegada}"
+                                              mindate="#{timeBean.minDateTime}"
+                                              maxdate="#{timeBean.maxDateTime}"
+                                              required="true"/>
+
+                                <p:outputLabel for="vuelo_e" value="Estado"/>
+                                <p:inputText id="vuelo_e" value="#{vueloBean.vuelo.estado}" required="true"/>
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="Cancelar" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('actualizar-vuelo').hide()"/>
+                                    <p:commandButton value="Actualizar"  update="@form" action="#{vueloBean.actualizarVuelo}" onclick="PF('actualizar-vuelo').hide()" />
+                                </f:facet>
+                            </h:panelGrid>
+                            <p:growl showDetail="true"/>
+                        </h:form>
+                    </p:dialog>
+
+                    <p:dialog header="Eliminar" widgetVar="eliminar-vuelo" minHeight="40" width="350" showEffect="fade" modal="true">
+                        <h:form>
+
+                            <p class="p-m-0 ql-font-serif">
+                                Eliminar Vuelo
+                            </p>
+                            <h:panelGrid cellpadding="4" columns="4">
+                                <f:facet name="footer">
+                                    <p:commandButton value="No" styleClass="ui-button-secondary p-mr-2" style="width: 6rem" onclick="PF('eliminar-vuelo').hide()"/>
+                                    <p:commandButton value="Si" style="width: 5rem" update="@form" action="#{vueloBean.eliminarVuelo}" onclick="PF('eliminar-vuelo').hide()"/>
+                                </f:facet>
+                            </h:panelGrid>
+                            <p:growl showDetail="true"/>
+                        </h:form>
+                    </p:dialog>
 
                 </p:panel>
             </div>

@@ -119,7 +119,7 @@
                                     <h:outputText value="#{gerente.nickname}" />
                                 </p:column>
 
-                                <p:column headerText="Registro"> sortBy="#{gerente.fechaRegistro}"
+                                <p:column headerText="Registro" sortBy="#{gerente.fechaRegistro}">
                                     <h:outputText value="#{gerente.fechaRegistro}" />
                                 </p:column>
 
@@ -138,6 +138,7 @@
                             </p:dataTable>
                         </div>
                     </h:form>
+
                     <p:dialog header="Actualizar" widgetVar="actualizar-gerente" minHeight="40" width="350" showEffect="fade" modal="true">
                         <h:form>
                             <h:panelGrid cellpadding="4" columns="2">

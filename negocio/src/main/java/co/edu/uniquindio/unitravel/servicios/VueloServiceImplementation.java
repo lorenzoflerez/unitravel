@@ -26,13 +26,13 @@ public class VueloServiceImplementation implements VueloService{
 
     @Override
     public Vuelo registrarVuelo(Vuelo vuelo) throws Exception {
-        Optional<Vuelo> vueloBuscado = vueloRepository.findById(vuelo.getIdVuelo());
-        if(vueloBuscado.isPresent())
-            throw new Exception("El código ya se encuentra registrado");
         if(vuelo.getOrigen().equals(vuelo.getDestino()))
             throw new Exception("El origen y el destino no pueden ser iguales");
+        System.out.println("genaro");
+        System.out.println(vuelo.toString());
         if(vuelo.getFechaLlegada().isBefore(vuelo.getFechaSalida()))
             throw new Exception("La fecha de llegada debe ser posterior a la fecha de salida");
+        System.out.println("nirvana");
         return vueloRepository.save(vuelo);
     }
 

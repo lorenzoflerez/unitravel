@@ -20,12 +20,13 @@ public class CiudadConverter implements Converter<Ciudad>, Serializable {
 
     @Override
     public Ciudad getAsObject(FacesContext context, UIComponent component, String value) {
+        Ciudad ciudad = null;
         try {
-            return administradorService.buscarCiudadPorId(Integer.parseInt(value));
+            ciudad = administradorService.buscarCiudadPorId(Integer.parseInt(value));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return ciudad;
     }
 
     @Override

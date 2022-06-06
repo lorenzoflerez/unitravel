@@ -33,6 +33,4 @@ public class RegionConverter implements Converter<Region>, Serializable {
     public String getAsString(FacesContext context, UIComponent component, Region value) {
         return (value != null) ? value.getIdRegion().toString() : "";
     }
-
-
 }
